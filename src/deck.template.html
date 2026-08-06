@@ -1,0 +1,675 @@
+<title>RoofCoat Leads &#8212; Pitch Deck</title>
+
+<style>
+@font-face{font-family:"Montserrat";src:url(__FONT_MONTSERRAT__) format("woff2");font-weight:100 900;font-style:normal;font-display:block}
+@font-face{font-family:"Inter";src:url(__FONT_INTER__) format("woff2");font-weight:100 900;font-style:normal;font-display:block}
+
+/* Tokens lifted from roofcoatleads.com. The deck commits to the dark ground in
+   both themes: it is the brand, and it is what projects properly in a room. */
+:root,
+:root[data-theme="dark"],
+:root[data-theme="light"]{
+  --navy:#09090b;
+  --navy-light:#18181b;
+  --surface:#1f1f23;
+  --fg:#fafafa;
+  --muted:#a1a1aa;
+  --dim:#71717a;
+  --line:#2a2a30;
+  --gold:#eab308;
+  --gold-dim:#8a6b09;
+  --blue:#2563eb;
+  --blue-light:#3b82f6;
+  --img-hero:url(__IMG_HERO__);
+  --img-worker:url(__IMG_WORKER__);
+  --img-membrane:url(__IMG_MEMBRANE__);
+  --img-aerial:url(__IMG_AERIAL__);
+
+  --display:"Montserrat",system-ui,sans-serif;
+  --body:"Inter",system-ui,-apple-system,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#050506;
+  color:var(--fg);
+  font-family:var(--body);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Shell ---------- */
+.deck{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(10px,2.2vw,36px);
+}
+.stage{
+  position:relative;
+  width:min(1320px,100%);
+  aspect-ratio:16/9;
+  background:var(--navy);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  container-type:size;
+}
+
+/* ---------- Slide + layout system ----------
+   Every slide is a full-bleed canvas. `.media` sits behind and may run to the
+   slide edge; `.content` carries the padding. Layout variants only move those
+   two, so the type scale below never has to change. */
+.slide{position:absolute;inset:0;display:none}
+.slide[data-active="true"]{display:block}
+.slide[data-active="true"] .content > *{animation:rise .4s cubic-bezier(.2,.7,.3,1) both}
+.slide[data-active="true"] .content > *:nth-child(2){animation-delay:.05s}
+.slide[data-active="true"] .content > *:nth-child(3){animation-delay:.1s}
+.slide[data-active="true"] .content > *:nth-child(4){animation-delay:.15s}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.content{
+  position:relative;
+  z-index:2;
+  height:100%;
+  padding:6cqw 6.5cqw 8cqw;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:2.4cqh;
+}
+
+.media{position:absolute;z-index:0;overflow:hidden;background-size:cover;background-position:center}
+.media::after{content:"";position:absolute;inset:0}
+.img-hero{background-image:var(--img-hero)}
+.img-worker{background-image:var(--img-worker)}
+.img-membrane{background-image:var(--img-membrane)}
+.img-aerial{background-image:var(--img-aerial)}
+
+/* Full bleed: photo across the whole slide, copy sits in the dark left third. */
+.lay-bleed .media{inset:0}
+.lay-bleed .media::after{
+  background:linear-gradient(90deg,rgba(9,9,11,.97) 0%,rgba(9,9,11,.93) 40%,rgba(9,9,11,.62) 72%,rgba(9,9,11,.4) 100%);
+}
+.lay-bleed .content{max-width:64%}
+
+/* Media panel hard against the right edge, copy in the remaining space. */
+.lay-right .media{top:0;right:0;bottom:0;width:42%}
+.lay-right .media::after{background:linear-gradient(90deg,var(--navy) 0%,rgba(9,9,11,.55) 30%,transparent 70%)}
+.lay-right .content{width:60%;padding-right:2cqw}
+
+/* Same, mirrored. */
+.lay-left .media{top:0;left:0;bottom:0;width:38%}
+.lay-left .media::after{background:linear-gradient(270deg,var(--navy) 0%,rgba(9,9,11,.5) 32%,transparent 72%)}
+.lay-left .content{width:64%;margin-left:auto;padding-left:2cqw}
+
+/* A narrow full-height strip, used where a photo is texture rather than subject. */
+.lay-strip .media{top:0;right:0;bottom:0;width:16%}
+.lay-strip .media::after{background:linear-gradient(90deg,var(--navy) 0%,rgba(9,9,11,.35) 60%,transparent 100%)}
+.lay-strip .content{width:88%}
+
+/* ---------- Type ---------- */
+.eyebrow{
+  font-family:var(--display);font-weight:700;font-size:1.1cqw;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0;
+}
+.eyebrow.blue{color:var(--blue-light)}
+
+h1{font-family:var(--display);font-weight:800;font-size:5.4cqw;line-height:1.02;letter-spacing:-.028em;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:800;font-size:3.7cqw;line-height:1.06;letter-spacing:-.024em;margin:0;text-wrap:balance;max-width:19ch}
+h2.wide{max-width:26ch}
+
+p{margin:0;font-size:1.4cqw;line-height:1.6;color:var(--fg);max-width:58ch}
+p.lead{font-size:1.7cqw;color:var(--fg);max-width:50ch}
+strong{color:var(--fg);font-weight:600}
+
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* ---------- Components ---------- */
+.cards{display:grid;gap:1.3cqw}
+.cards.three{grid-template-columns:repeat(3,1fr)}
+.card{
+  background:rgba(24,24,27,.82);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:1.9cqw;
+  display:flex;flex-direction:column;gap:.8cqw;
+  backdrop-filter:blur(6px);
+}
+.card h3{font-family:var(--display);font-weight:700;font-size:1.55cqw;letter-spacing:-.01em;margin:0;color:var(--fg)}
+.card p{font-size:1.18cqw;line-height:1.5}
+
+.stat{font-family:var(--display);font-weight:800;font-size:3.2cqw;line-height:1;letter-spacing:-.03em;color:var(--gold);font-variant-numeric:tabular-nums}
+.stat-label{font-size:1.1cqw;color:var(--fg);line-height:1.45}
+
+/* Asymmetric stat block: one figure carries the slide, two support it. */
+.stat-lead{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:1.3cqw;align-items:stretch}
+.stat-lead .card:first-child .stat{font-size:5cqw}
+
+.huge{font-family:var(--display);font-weight:800;font-size:15cqw;line-height:.82;letter-spacing:-.05em;color:var(--gold);font-variant-numeric:tabular-nums}
+
+/* Loop: the content genuinely is a four-step cycle, so it is numbered. */
+.loop{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw}
+.step{
+  position:relative;background:rgba(24,24,27,.9);border:1px solid var(--line);
+  border-radius:10px;padding:1.6cqw;display:flex;flex-direction:column;gap:.6cqw;
+}
+.step:not(:last-child)::after{content:"";position:absolute;top:50%;right:-1cqw;width:1cqw;height:1px;background:var(--blue)}
+.step .num{font-family:var(--display);font-weight:800;font-size:1.05cqw;letter-spacing:.1em;color:var(--blue-light);font-variant-numeric:tabular-nums}
+.step h4{font-family:var(--display);font-weight:700;font-size:1.42cqw;margin:0;color:var(--fg);letter-spacing:-.01em}
+.step p{font-size:1.06cqw;line-height:1.45}
+.loop-return{display:flex;align-items:center;gap:.9cqw;font-size:1.1cqw;color:var(--blue-light);font-weight:500}
+.loop-return .arc{flex:1;height:1px;background:linear-gradient(90deg,var(--blue),rgba(37,99,235,.12))}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1.3cqw}
+.split-col{
+  border:1px solid var(--line);border-radius:10px;padding:1.9cqw;
+  display:flex;flex-direction:column;gap:.9cqw;background:rgba(24,24,27,.82);
+}
+.split-col.accent{border-color:var(--gold-dim);background:linear-gradient(180deg,rgba(234,179,8,.09),rgba(24,24,27,.82))}
+.split-col h3{font-family:var(--display);font-weight:700;font-size:1.5cqw;margin:0}
+.split-col p{font-size:1.22cqw;line-height:1.5}
+
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw}
+.logo-chip{background:#fff;border-radius:8px;height:7cqw;display:flex;align-items:center;justify-content:center;padding:.9cqw 1.2cqw}
+.logo-chip img{max-width:100%;max-height:100%;object-fit:contain}
+.name-chip{
+  background:rgba(24,24,27,.9);border:1px solid var(--line);border-radius:8px;height:7cqw;
+  display:flex;align-items:center;justify-content:center;padding:.9cqw;text-align:center;
+  font-family:var(--display);font-weight:700;font-size:1.06cqw;line-height:1.3;color:var(--fg);
+}
+
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:1.05cqw 1.2cqw;border-bottom:1px solid var(--line);font-size:1.3cqw}
+th{font-family:var(--display);font-weight:700;font-size:1cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+td{color:var(--fg)}
+td.figure{font-family:var(--display);font-weight:700;color:var(--fg)}
+td.win{font-family:var(--display);font-weight:800;color:var(--gold)}
+tbody tr:last-child td{border-bottom:0}
+
+.checks{display:grid;gap:.8cqw;padding:0;margin:0;list-style:none}
+.checks li{display:flex;gap:.85cqw;align-items:flex-start;font-size:1.24cqw;line-height:1.45;color:var(--fg)}
+.checks li::before{content:"";flex:0 0 auto;width:.58cqw;height:.58cqw;margin-top:.48cqw;border-radius:2px;background:var(--gold)}
+.checks.blue li::before{background:var(--blue-light)}
+
+/* Head-to-head table. The final column is ours and is weighted accordingly. */
+table.vs th:last-child{color:var(--gold)}
+table.vs td:last-child,
+table.vs th:last-child{background:rgba(234,179,8,.07);font-family:var(--display);font-weight:700;color:var(--fg)}
+table.vs td:first-child{color:var(--fg);font-weight:500}
+table.vs td:nth-child(2){color:#a1a1aa}
+
+/* ROI band. The multiples are the point of the slide, so they sit outside
+   the card grid and carry the accent. */
+.roi{
+  display:grid;grid-template-columns:auto auto 1fr;gap:2.6cqw;align-items:center;
+  border:1px solid var(--gold-dim);border-radius:10px;padding:1.9cqw 2.2cqw;
+  background:linear-gradient(180deg,rgba(234,179,8,.1),rgba(24,24,27,.82));
+}
+.roi-x{font-family:var(--display);font-weight:800;font-size:4.6cqw;line-height:1;letter-spacing:-.04em;color:var(--gold);font-variant-numeric:tabular-nums;display:block}
+.roi-label{font-size:1.08cqw;color:var(--fg);line-height:1.4;display:block;max-width:16ch}
+.roi p{font-size:1.22cqw;line-height:1.5;max-width:44ch}
+
+
+
+.price-row{display:flex;align-items:baseline;gap:1.3cqw;flex-wrap:wrap}
+.price-big{font-family:var(--display);font-weight:800;font-size:8cqw;line-height:1;letter-spacing:-.04em;color:var(--gold);font-variant-numeric:tabular-nums}
+.price-note{font-size:1.35cqw;color:var(--fg)}
+.price-break{display:flex;gap:2.4cqw;flex-wrap:wrap}
+.price-break div{display:flex;flex-direction:column;gap:.3cqw}
+.price-break .amt{font-family:var(--display);font-weight:700;font-size:1.9cqw;color:var(--fg);font-variant-numeric:tabular-nums}
+.price-break .what{font-size:1.1cqw;color:#e4e4e7}
+
+.pill{
+  display:inline-flex;align-items:center;align-self:flex-start;
+  border:1px solid var(--gold-dim);color:var(--gold);border-radius:999px;
+  padding:.5cqw 1.15cqw;font-family:var(--display);font-weight:700;
+  font-size:1cqw;letter-spacing:.1em;text-transform:uppercase;
+}
+
+.title-foot{display:flex;gap:1.6cqw;align-items:center;font-size:1.15cqw;color:#e4e4e7;flex-wrap:wrap}
+
+/* ---------- Chrome ---------- */
+.rail{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(42,42,48,.7);z-index:5}
+.rail span{display:block;height:100%;background:var(--gold);transition:width .3s ease}
+.counter{position:absolute;right:2.4cqw;bottom:2.2cqw;z-index:5;font-family:var(--display);font-weight:700;font-size:1cqw;color:var(--dim);letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.mark{position:absolute;left:2.4cqw;bottom:2.2cqw;z-index:5;font-family:var(--display);font-weight:800;font-size:1cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.mark b{color:var(--gold)}
+
+.nav{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;z-index:20}
+.nav button{
+  width:40px;height:40px;border-radius:8px;border:1px solid var(--line);
+  background:var(--navy-light);color:var(--fg);font-size:16px;cursor:pointer;
+  display:grid;place-items:center;transition:background .15s ease,border-color .15s ease;
+}
+.nav button:hover{background:var(--surface);border-color:var(--gold-dim)}
+.nav button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.hint{position:fixed;left:18px;bottom:24px;font-size:12px;color:var(--dim);z-index:20}
+kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--muted);font-size:11px}
+
+@media (prefers-reduced-motion:reduce){
+  .slide[data-active="true"] .content > *{animation:none}
+  .rail span{transition:none}
+}
+@media (max-width:760px){.hint{display:none}}
+</style>
+
+<div class="deck">
+  <div class="stage" id="stage">
+
+    <!-- 1 . title, full bleed ............................................ -->
+    <section class="slide lay-bleed" data-active="true">
+      <div class="media img-hero" role="img" aria-label="Contractor spraying roof coating on a flat roof"></div>
+      <div class="content">
+        <p class="eyebrow">RoofCoat Leads</p>
+        <h1>Facebook lead generation for roof coating contractors.</h1>
+        <p class="lead">We build and run the campaigns, screen the enquiries, and send you the ones worth quoting.</p>
+        <hr class="rule">
+        <div class="title-foot">
+          <span>August 2026</span>
+          <span>roofcoatleads.com</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 . what we do, media right ...................................... -->
+    <section class="slide lay-right">
+      <div class="media img-worker" role="img" aria-label="Roofer working on a flat commercial roof"></div>
+      <div class="content">
+        <p class="eyebrow">What we do</p>
+        <h2>We run Facebook ads for roof coating contractors only.</h2>
+        <p class="lead">We build the campaigns, write the ads and manage them daily. Every enquiry is screened for property type, roof age, timeline and budget before it reaches you.</p>
+        <p>You never have to open Ads Manager or learn how the platform works.</p>
+      </div>
+    </section>
+
+    <!-- 3 . the problem, asymmetric stats ................................ -->
+    <section class="slide lay-strip">
+      <div class="media img-membrane" role="img" aria-label="Roof membrane detail"></div>
+      <div class="content">
+        <p class="eyebrow">The problem</p>
+        <h2 class="wide">A generalist agency learns your trade at your expense.</h2>
+        <div class="stat-lead">
+          <div class="card">
+            <span class="stat">$2&#8211;5k</span>
+            <span class="stat-label">Typical monthly retainer while an agency works out what a roof coating buyer looks like.</span>
+          </div>
+          <div class="card">
+            <span class="stat">3&#8211;6 mo</span>
+            <span class="stat-label">How long that usually takes before the campaigns perform.</span>
+          </div>
+          <div class="card">
+            <span class="stat">4&#215;</span>
+            <span class="stat-label">Contractors who receive the same enquiry from a shared lead platform.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 . three alternatives ........................................... -->
+    <section class="slide">
+      <div class="content">
+        <p class="eyebrow">The alternatives</p>
+        <h2 class="wide">Three ways contractors currently get work.</h2>
+        <div class="cards three">
+          <div class="card">
+            <h3>Shared lead platforms</h3>
+            <p>Angi and HomeAdvisor sell one enquiry to three or four contractors. You compete on price against people quoting the same roof.</p>
+          </div>
+          <div class="card">
+            <h3>A generalist agency</h3>
+            <p>Competent at advertising and new to roof coating. They report on clicks and form fills because those are the numbers they can produce.</p>
+          </div>
+          <div class="card">
+            <h3>Running it yourself</h3>
+            <p>Facebook campaigns need checking daily. Most contractors are on site instead, so the account drifts and the cost per lead climbs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 . head to head ............................................... -->
+    <section class="slide">
+      <div class="content">
+        <p class="eyebrow">Side by side</p>
+        <h2 class="wide">Us against a generalist agency.</h2>
+        <div class="table-wrap">
+          <table class="vs">
+            <thead>
+              <tr>
+                <th></th>
+                <th>A generalist agency</th>
+                <th>RoofCoat Leads</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Trades they work in</td><td>All of them</td><td>Roof coating only</td></tr>
+              <tr><td>Campaigns optimised for</td><td>Clicks and form fills</td><td>Closed jobs</td></tr>
+              <tr><td>Data behind the targeting</td><td>Your account alone</td><td>Every job on the system</td></tr>
+              <tr><td>Time before it performs</td><td>3 to 6 months</td><td>Days</td></tr>
+              <tr><td>Commitment</td><td>Usually 6 to 12 months</td><td>Month to month</td></tr>
+              <tr><td>Monthly cost</td><td>$2,000 to $5,000 plus ad spend</td><td>$1,500 plus $1,500 ad spend</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 . what the campaigns optimise for .............................. -->
+    <section class="slide lay-strip">
+      <div class="media img-hero" role="img" aria-label="Roof coating being applied"></div>
+      <div class="content">
+        <p class="eyebrow">The difference</p>
+        <h2 class="wide">What the campaigns are optimised for.</h2>
+        <div class="split">
+          <div class="split-col">
+            <h3>Most agencies optimise for form fills</h3>
+            <p>Form fills are easy to count and easy to report. The number rises every month whether or not you sell more work.</p>
+          </div>
+          <div class="split-col accent">
+            <h3>We optimise for closed jobs</h3>
+            <p>Your closed job data goes back into the ad account. Facebook then targets people who resemble the customers who actually paid.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 . the system ................................................... -->
+    <section class="slide">
+      <div class="content">
+        <p class="eyebrow blue">The system</p>
+        <h2 class="wide">How the targeting improves.</h2>
+        <div class="loop">
+          <div class="step">
+            <span class="num">01</span>
+            <h4>Job data in</h4>
+            <p>Property type, location, roof condition and job value from work that closed.</p>
+          </div>
+          <div class="step">
+            <span class="num">02</span>
+            <h4>The model</h4>
+            <p>Patterns across every job running on the system rather than one account alone.</p>
+          </div>
+          <div class="step">
+            <span class="num">03</span>
+            <h4>Targeting</h4>
+            <p>Facebook shows the ad to property owners who match those patterns.</p>
+          </div>
+          <div class="step">
+            <span class="num">04</span>
+            <h4>Jobs out</h4>
+            <p>Each job you close is new data, and it returns to step one.</p>
+          </div>
+        </div>
+        <div class="loop-return">
+          <span>Closed jobs return to the model</span>
+          <span class="arc"></span>
+          <span>The model has more to work with each month</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 . why it compounds, media left ................................. -->
+    <section class="slide lay-left">
+      <div class="media img-aerial" role="img" aria-label="Aerial view of commercial flat roofs"></div>
+      <div class="content">
+        <p class="eyebrow blue">Why it compounds</p>
+        <h2 class="wide">Your campaigns use data from every contractor on the system.</h2>
+        <div class="split">
+          <div class="split-col">
+            <h3>A solo ad account</h3>
+            <p>Learns only from the jobs you close, which is a few dozen data points a year.</p>
+          </div>
+          <div class="split-col accent">
+            <h3>An account on the system</h3>
+            <p>Learns from every job closed across all contractors, so cost per booked job falls as volume grows.</p>
+          </div>
+        </div>
+        <p>A new ad account cannot reproduce this, regardless of who runs it.</p>
+      </div>
+    </section>
+
+    <!-- 8 . the competitor question ...................................... -->
+    <section class="slide lay-bleed">
+      <div class="media img-aerial" role="img" aria-label="Commercial roofs from above"></div>
+      <div class="content">
+        <p class="eyebrow">The question everyone asks</p>
+        <h2 class="wide">Do you work with my competitor?</h2>
+        <div class="split">
+          <div class="split-col accent">
+            <h3>Your leads are exclusive</h3>
+            <p>An enquiry generated for you goes to you. We do not resell it to other contractors.</p>
+          </div>
+          <div class="split-col">
+            <h3>Territories are not locked</h3>
+            <p>We work with contractors across the country, and that volume is what makes the targeting accurate. Restricting it to one contractor per city would reduce the quality of your own leads.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 . logo wall .................................................... -->
+    <section class="slide">
+      <div class="content">
+        <p class="eyebrow">Who is on the system</p>
+        <h2 class="wide">Contractors currently running campaigns with us.</h2>
+        <div class="logos">
+          <div class="logo-chip"><img src="__LOGO_BRIGHTSHIELD__" alt="Brightshield Roof Coating Systems"></div>
+          <div class="logo-chip"><img src="__LOGO_TALBOT__" alt="Talbot Roofing"></div>
+          <div class="logo-chip"><img src="__LOGO_SUPREME__" alt="Supreme Home Roofing and Construction"></div>
+          <div class="logo-chip"><img src="__LOGO_IRC__" alt="IRC Roof Coatings"></div>
+          <div class="name-chip">Summit Roofing Solutions</div>
+          <div class="name-chip">R4 Roofing &amp; Reconstruction</div>
+          <div class="name-chip">Key State Roofing</div>
+          <div class="name-chip">5 Star Roofing</div>
+          <div class="name-chip">Restoration Roofing</div>
+          <div class="name-chip">BCS Roof Coating</div>
+          <div class="name-chip">Rightway Asphalt &amp; Seal Coating</div>
+          <div class="name-chip">B &amp; R Paving Pros</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 . no contracts ................................................ -->
+    <section class="slide lay-right">
+      <div class="media img-worker" role="img" aria-label="Roofer at work"></div>
+      <div class="content">
+        <p class="eyebrow">How we are paid</p>
+        <h2>Every contractor is month to month.</h2>
+        <div style="display:flex;align-items:center;gap:2.4cqw">
+          <span class="huge">0</span>
+          <div style="display:flex;flex-direction:column;gap:.8cqw">
+            <p><strong>Contracts signed by anyone on the system.</strong></p>
+            <p>A contractor can stop at the end of any month. The accounts get attention because the leads have to stay worth the money for us to keep being paid.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 . results, real account .................................... -->
+    <section class="slide lay-strip">
+      <div class="media img-aerial" role="img" aria-label="Commercial roofs from above"></div>
+      <div class="content">
+        <p class="eyebrow">Results</p>
+        <h2 class="wide">What one contractor did in three months.</h2>
+        <div class="cards three">
+          <div class="card">
+            <span class="stat">$100,000</span>
+            <span class="stat-label">Work won in his first month on the system.</span>
+          </div>
+          <div class="card">
+            <span class="stat">$120,000</span>
+            <span class="stat-label">Won across three months, taking the low end of the range.</span>
+          </div>
+          <div class="card">
+            <span class="stat">$9,000</span>
+            <span class="stat-label">Everything he paid us over those three months, ad spend included.</span>
+          </div>
+        </div>
+        <div class="roi">
+          <div><span class="roi-x">13x</span><span class="roi-label">Revenue against what he spent</span></div>
+          <div><span class="roi-x">5x</span><span class="roi-label">Still ahead after a 40% gross margin</span></div>
+          <p>$120,000 of work against $9,000 paid. At a 40% margin that is $48,000 of gross profit on a $9,000 outlay.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 . the cost of waiting ....................................... -->
+    <section class="slide lay-bleed">
+      <div class="media img-worker" role="img" aria-label="Roofer working on a flat roof"></div>
+      <div class="content">
+        <p class="eyebrow">The cost of waiting</p>
+        <h2 class="wide">What another quarter on the sidelines costs.</h2>
+        <div class="cards three">
+          <div class="card">
+            <span class="stat">$120,000</span>
+            <span class="stat-label">Work won in three months. Fee over the same period is $9,000.</span>
+          </div>
+          <div class="card">
+            <span class="stat">$240,000</span>
+            <span class="stat-label">Six months. Fee is $18,000.</span>
+          </div>
+          <div class="card">
+            <span class="stat">$480,000</span>
+            <span class="stat-label">A full year. Fee is $36,000.</span>
+          </div>
+        </div>
+        <p>Those roofs get coated either way. Property owners with failing roofs are searching now, and the contractor advertising to them gets the quote.</p>
+      </div>
+    </section>
+
+    <!-- 12 . the math .................................................... -->
+    <section class="slide lay-strip">
+      <div class="media img-membrane" role="img" aria-label="Roof surface detail"></div>
+      <div class="content">
+        <p class="eyebrow">The math</p>
+        <h2 class="wide">What one job covers.</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Roof</th>
+                <th>Coating job</th>
+                <th>Gross profit at 40%</th>
+                <th>Months of fee it covers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="figure">8,000 sq ft</td><td>$50,000</td><td>$20,000</td><td class="win">6 months</td></tr>
+              <tr><td class="figure">25,000 sq ft</td><td>$150,000</td><td>$60,000</td><td class="win">20 months</td></tr>
+              <tr><td class="figure">75,000 sq ft</td><td>$375,000</td><td>$150,000</td><td class="win">50 months</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Silicone restoration coatings run $4 to $7 a square foot against $6 to $14 for a tear-off replacement, which is why these quotes close. One 25,000 sq ft warehouse covers the fee until 2028.</p>
+      </div>
+    </section>
+
+    <!-- 13 . what is included ............................................ -->
+    <section class="slide">
+      <div class="content">
+        <p class="eyebrow">What is included</p>
+        <h2 class="wide">What $1,500 a month covers.</h2>
+        <div class="split">
+          <div class="split-col">
+            <h3>What we run</h3>
+            <ul class="checks">
+              <li>Campaign build and daily management</li>
+              <li>Ad creative, written and designed</li>
+              <li>Landing page built for the offer</li>
+              <li>Screening for property type, roof age, timeline and budget</li>
+              <li>Booking available around the clock</li>
+              <li>Call and lead tracking, reported monthly</li>
+            </ul>
+          </div>
+          <div class="split-col accent">
+            <h3>What we need from you</h3>
+            <ul class="checks blue">
+              <li>Call a new lead within five minutes</li>
+              <li>Follow up at least three times before giving up</li>
+              <li>Tell us which leads turned into jobs</li>
+            </ul>
+            <p>Reporting closed jobs is how the targeting improves, so it lowers your own cost per lead over time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 . price ....................................................... -->
+    <section class="slide lay-bleed">
+      <div class="media img-hero" role="img" aria-label="Roof coating application"></div>
+      <div class="content">
+        <p class="eyebrow">Pricing</p>
+        <div class="price-row">
+          <span class="price-big">$3,000</span>
+          <span class="price-note">per month</span>
+        </div>
+        <div class="price-break">
+          <div><span class="amt">$1,500</span><span class="what">Management</span></div>
+          <div><span class="amt">$1,500</span><span class="what">Ad spend</span></div>
+        </div>
+        <span class="pill">No contract &#183; Cancel any month</span>
+        <p class="lead">Campaigns are usually live within a few days of starting.</p>
+      </div>
+    </section>
+
+    <div class="rail"><span id="rail"></span></div>
+    <div class="mark">RoofCoat<b>.</b></div>
+    <div class="counter" id="counter">01 / 14</div>
+  </div>
+</div>
+
+<div class="hint"><kbd>&#8592;</kbd> <kbd>&#8594;</kbd> to move &#183; <kbd>F</kbd> for full screen</div>
+
+<div class="nav">
+  <button id="prev" aria-label="Previous slide">&#8592;</button>
+  <button id="next" aria-label="Next slide">&#8594;</button>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var rail = document.getElementById("rail");
+  var counter = document.getElementById("counter");
+  var stage = document.getElementById("stage");
+  var i = 0;
+
+  function pad(n) { return n < 10 ? "0" + n : String(n); }
+
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (s, idx) {
+      s.setAttribute("data-active", idx === i ? "true" : "false");
+    });
+    rail.style.width = ((i + 1) / slides.length * 100) + "%";
+    counter.textContent = pad(i + 1) + " / " + pad(slides.length);
+  }
+
+  document.getElementById("next").addEventListener("click", function () { show(i + 1); });
+  document.getElementById("prev").addEventListener("click", function () { show(i - 1); });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") { e.preventDefault(); show(i + 1); }
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); show(i - 1); }
+    else if (e.key === "Home") { show(0); }
+    else if (e.key === "End") { show(slides.length - 1); }
+    else if (e.key === "f" || e.key === "F") {
+      if (document.fullscreenElement) { document.exitFullscreen(); }
+      else if (stage.requestFullscreen) { stage.requestFullscreen(); }
+    }
+  });
+
+  stage.addEventListener("click", function (e) {
+    if (e.target.closest("button")) return;
+    var r = stage.getBoundingClientRect();
+    show(e.clientX - r.left < r.width / 3 ? i - 1 : i + 1);
+  });
+
+  show(0);
+})();
+</script>
