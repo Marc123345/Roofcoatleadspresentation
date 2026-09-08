@@ -34,6 +34,22 @@ in a meeting room.
 | 15 | What $1,500 a month covers |
 | 16 | Pricing |
 
+## Pre-call brief
+
+`brief.html` is a separate one-page read for whoever is about to take the call —
+not part of the 16-slide deck. It is the proof that already exists in the client
+book: how many are paying, how many are under contract (none), who has stayed
+longest, and the four stories that answer the objections contractors actually
+raise.
+
+Open it on its own. It prints to one page.
+
+The counts come from the client record in `lib/clients.js` in the EZ Marketing
+dashboard and were true on 8 September 2026. **Re-check them before a call if it
+has been a few weeks** — the page says so at the foot. The four named stories
+(Ron at Build Co, Pete Kelley, Byron, the Washington contractor) are Marc's own
+account and are not recorded anywhere in code.
+
 ## Editing
 
 The copy is plain HTML inside `index.html`, so text changes can be made
