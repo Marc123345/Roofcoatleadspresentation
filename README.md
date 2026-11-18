@@ -1,6 +1,6 @@
 # RoofCoat Leads — pitch deck
 
-A 16-slide sales deck for RoofCoat Leads, pitching lead generation to roof
+A 17-slide sales deck for RoofCoat Leads, pitching lead generation to roof
 coating contractors at $1,500 a month to us, plus about $50 a day of ad spend
 paid by the contractor directly to Facebook. Revised 18 November 2026.
 
@@ -31,11 +31,12 @@ in `ads/`, so the folder works offline in a meeting room.
 | 11 | Results: lead-sheet inquiries by region, plus one contractor's $120,000 |
 | 12 | The math: what one job covers |
 | 13 | What $1,500 a month covers |
-| 14 | How we work together after you sign |
-| 15 | Month to month, no refunds, no guarantees |
-| 16 | Pricing |
+| 14 | Sales and marketing: the gap every lead gen company has, and how LeadConnector notes close it |
+| 15 | How we work together after you sign (weekly calls, pipeline and notes in LeadConnector) |
+| 16 | Month to month, no refunds, no guarantees |
+| 17 | Pricing |
 
-A winter slide for cold markets goes between 14 and 15 once the winter plan is
+A winter slide for cold markets goes between 15 and 16 once the winter plan is
 agreed with Ezra.
 
 **Slide 9 videos** live in `ads/` next to `index.html` (same three ads as the
@@ -86,9 +87,15 @@ regenerate `index.html`.
 
 ## Design
 
-Built on the roofcoatleads.com design system: Montserrat and Inter, `#09090b`
-ground, `#eab308` accent, with `#2563eb` as a secondary accent (the "from you" lists).
+Matches the roofcoatleads.com design system (`src/assets/css/rc.css` and
+`style.css` in the roofcoat-leads repo): Beatrice Trial at weight 500 for
+headings with the key phrase in gold, star-icon sub-titles, `#18181b` cards
+with a 20px radius and a faded corner number, solid gold feature tiles with
+dark text, a dashed gold callout, and photos as rounded cards. `#09090b`
+ground, `#eab308` gold, no other accent colour.
 
-The deck stays dark whichever theme the viewer's browser is set to. That is
-deliberate rather than an oversight: it matches the brand and it is what
-projects properly in a room.
+Beatrice Trial has no punctuation glyphs, so `$ % , –` fall back to Inter
+(embedded), the same way the site falls back to the system sans.
+
+The deck stays dark whichever theme the viewer's browser is set to, to match
+the brand and to project properly in a room.

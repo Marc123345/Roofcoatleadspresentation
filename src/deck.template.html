@@ -1,32 +1,33 @@
 <title>RoofCoat Leads &#8212; Pitch Deck</title>
 
 <style>
-@font-face{font-family:"Montserrat";src:url(__FONT_MONTSERRAT__) format("woff2");font-weight:100 900;font-style:normal;font-display:block}
+@font-face{font-family:"Beatrice Trial";src:url(__FONT_BEATRICE_400__) format("woff");font-weight:400;font-style:normal;font-display:block}
+@font-face{font-family:"Beatrice Trial";src:url(__FONT_BEATRICE_500__) format("woff");font-weight:500;font-style:normal;font-display:block}
+@font-face{font-family:"Beatrice Trial";src:url(__FONT_BEATRICE_600__) format("woff");font-weight:600;font-style:normal;font-display:block}
 @font-face{font-family:"Inter";src:url(__FONT_INTER__) format("woff2");font-weight:100 900;font-style:normal;font-display:block}
 
-/* Tokens lifted from roofcoatleads.com. The deck commits to the dark ground in
-   both themes: it is the brand, and it is what projects properly in a room. */
+/* Design system lifted from roofcoatleads.com (rc.css + style.css): Beatrice
+   Trial at weight 500 for headings with the key phrase in gold, a star-icon
+   sub-title, #18181b cards with a 20px radius, a faded number in the corner,
+   gold pill badges, solid gold feature tiles with dark text, and photos as
+   rounded cards. The trial font has no punctuation, so $ % , – fall back to
+   Inter, the same way the site falls back to the system sans. */
 :root,
 :root[data-theme="dark"],
 :root[data-theme="light"]{
-  --navy:#09090b;
-  --navy-light:#18181b;
-  --surface:#1f1f23;
-  --fg:#fafafa;
-  --muted:#a1a1aa;
-  --dim:#71717a;
-  --line:#2a2a30;
+  --ink:#09090b;
+  --card:#18181b;
+  --line:rgba(255,255,255,.1);
+  --fg:#ffffff;
+  --text:rgba(255,255,255,.72);
+  --muted:rgba(255,255,255,.5);
   --gold:#eab308;
-  --gold-dim:#8a6b09;
-  --blue:#2563eb;
-  --blue-light:#3b82f6;
+  --gold-soft:rgba(234,179,8,.12);
   --img-hero:url(__IMG_HERO__);
   --img-worker:url(__IMG_WORKER__);
   --img-membrane:url(__IMG_MEMBRANE__);
   --img-aerial:url(__IMG_AERIAL__);
-
-  --display:"Montserrat",system-ui,sans-serif;
-  --body:"Inter",system-ui,-apple-system,sans-serif;
+  --font:"Beatrice Trial","Inter",system-ui,sans-serif;
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -35,148 +36,143 @@ body{
   margin:0;
   background:#050506;
   color:var(--fg);
-  font-family:var(--body);
+  font-family:var(--font);
   -webkit-font-smoothing:antialiased;
 }
 
 /* ---------- Shell ---------- */
-.deck{
-  width:100%;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:clamp(10px,2.2vw,36px);
-}
+.deck{width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:clamp(10px,2.2vw,36px)}
 .stage{
-  position:relative;
-  width:min(1320px,100%);
-  aspect-ratio:16/9;
-  background:var(--navy);
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-  container-type:size;
+  position:relative;width:min(1320px,100%);aspect-ratio:16/9;
+  background:var(--ink);border:1px solid var(--line);border-radius:20px;
+  overflow:hidden;container-type:size;
 }
 
-/* ---------- Slide + layout system ----------
-   Every slide is a full-bleed canvas. `.media` sits behind and may run to the
-   slide edge; `.content` carries the padding. Layout variants only move those
-   two, so the type scale below never has to change. */
+/* ---------- Slides ---------- */
 .slide{position:absolute;inset:0;display:none}
 .slide[data-active="true"]{display:block}
-.slide[data-active="true"] .content > *{animation:rise .4s cubic-bezier(.2,.7,.3,1) both}
-.slide[data-active="true"] .content > *:nth-child(2){animation-delay:.05s}
-.slide[data-active="true"] .content > *:nth-child(3){animation-delay:.1s}
-.slide[data-active="true"] .content > *:nth-child(4){animation-delay:.15s}
-@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.slide[data-active="true"] .content > *{animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
+.slide[data-active="true"] .content > *:nth-child(2){animation-delay:.06s}
+.slide[data-active="true"] .content > *:nth-child(3){animation-delay:.12s}
+.slide[data-active="true"] .content > *:nth-child(4){animation-delay:.18s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
 .content{
-  position:relative;
-  z-index:2;
-  height:100%;
-  padding:6cqw 6.5cqw 8cqw;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:2.4cqh;
+  position:relative;z-index:2;height:100%;
+  padding:5.5cqw 6cqw 7cqw;
+  display:flex;flex-direction:column;justify-content:center;gap:2.2cqh;
 }
 
 .media{position:absolute;z-index:0;overflow:hidden;background-size:cover;background-position:center}
-.media::after{content:"";position:absolute;inset:0}
 .img-hero{background-image:var(--img-hero)}
 .img-worker{background-image:var(--img-worker)}
 .img-membrane{background-image:var(--img-membrane)}
 .img-aerial{background-image:var(--img-aerial)}
 
-/* Full bleed: photo across the whole slide, copy sits in the dark left third. */
+/* Full bleed, as the site hero: photo behind, dark wash on the copy side. */
 .lay-bleed .media{inset:0}
-.lay-bleed .media::after{
-  background:linear-gradient(90deg,rgba(9,9,11,.97) 0%,rgba(9,9,11,.93) 40%,rgba(9,9,11,.62) 72%,rgba(9,9,11,.4) 100%);
-}
-.lay-bleed .content{max-width:64%}
+.lay-bleed .media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,9,11,.96) 0%,rgba(9,9,11,.88) 45%,rgba(9,9,11,.45) 100%)}
+.lay-bleed .content{max-width:62%}
 
-/* Media panel hard against the right edge, copy in the remaining space. */
-.lay-right .media{top:0;right:0;bottom:0;width:42%}
-.lay-right .media::after{background:linear-gradient(90deg,var(--navy) 0%,rgba(9,9,11,.55) 30%,transparent 70%)}
-.lay-right .content{width:60%;padding-right:2cqw}
+/* Photo as a rounded card beside the copy (the site's image tiles). */
+.lay-right .media{top:5cqw;right:5cqw;bottom:6cqw;width:34%;border-radius:1.5cqw;border:1px solid var(--line)}
+.lay-right .content{width:62%;padding-right:1cqw}
+.lay-left .media{top:5cqw;left:5cqw;bottom:6cqw;width:30%;border-radius:1.5cqw;border:1px solid var(--line)}
+.lay-left .content{width:64%;margin-left:auto;padding-left:1cqw}
 
-/* Same, mirrored. */
-.lay-left .media{top:0;left:0;bottom:0;width:38%}
-.lay-left .media::after{background:linear-gradient(270deg,var(--navy) 0%,rgba(9,9,11,.5) 32%,transparent 72%)}
-.lay-left .content{width:64%;margin-left:auto;padding-left:2cqw}
-
-/* A narrow full-height strip, used where a photo is texture rather than subject. */
-.lay-strip .media{top:0;right:0;bottom:0;width:16%}
-.lay-strip .media::after{background:linear-gradient(90deg,var(--navy) 0%,rgba(9,9,11,.35) 60%,transparent 100%)}
-.lay-strip .content{width:88%}
+/* The old texture strip is dropped: the site never uses photos as filler. */
+.lay-strip .media{display:none}
 
 /* ---------- Type ---------- */
 .eyebrow{
-  font-family:var(--display);font-weight:700;font-size:1.1cqw;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0;
+  display:inline-flex;align-items:center;gap:.7cqw;margin:0;
+  font-size:1.2cqw;font-weight:400;color:var(--fg);letter-spacing:0;text-transform:none;
 }
-.eyebrow.blue{color:var(--blue-light)}
+.eyebrow::before{content:"";width:1.05cqw;height:1.05cqw;flex:0 0 auto;background:url(__IMG_STAR__) center/contain no-repeat}
 
-h1{font-family:var(--display);font-weight:800;font-size:5.4cqw;line-height:1.02;letter-spacing:-.028em;margin:0;text-wrap:balance}
-h2{font-family:var(--display);font-weight:800;font-size:3.7cqw;line-height:1.06;letter-spacing:-.024em;margin:0;text-wrap:balance;max-width:19ch}
-h2.wide{max-width:26ch}
+h1{font-weight:500;font-size:4.5cqw;line-height:1.1;letter-spacing:0;margin:0;text-transform:uppercase;text-wrap:balance}
+h2{font-weight:500;font-size:3.3cqw;line-height:1.15;letter-spacing:0;margin:0;text-wrap:balance;max-width:21ch}
+h2.wide{max-width:28ch}
+h1 span,h2 span{color:var(--gold)}
 
-p{margin:0;font-size:1.4cqw;line-height:1.6;color:var(--fg);max-width:58ch}
-p.lead{font-size:1.7cqw;color:var(--fg);max-width:50ch}
+p{margin:0;font-size:1.3cqw;line-height:1.6;color:var(--text);max-width:60ch}
+p.lead{font-size:1.55cqw;color:rgba(255,255,255,.85);max-width:48ch}
 strong{color:var(--fg);font-weight:600}
-
 .rule{height:1px;background:var(--line);border:0;margin:0}
 
-/* ---------- Components ---------- */
-.cards{display:grid;gap:1.3cqw}
+/* ---------- Cards (rc-leak-card) ---------- */
+.cards{display:grid;gap:1.4cqw}
 .cards.three{grid-template-columns:repeat(3,1fr)}
+.cards.five{grid-template-columns:repeat(5,1fr)}
 .card{
-  background:rgba(24,24,27,.82);
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:1.9cqw;
-  display:flex;flex-direction:column;gap:.8cqw;
-  backdrop-filter:blur(6px);
+  position:relative;overflow:hidden;
+  background:var(--card);border:1px solid var(--line);border-radius:1.5cqw;
+  padding:2.4cqw 2.2cqw;display:flex;flex-direction:column;gap:.9cqw;
 }
-.card h3{font-family:var(--display);font-weight:700;font-size:1.55cqw;letter-spacing:-.01em;margin:0;color:var(--fg)}
-.card p{font-size:1.18cqw;line-height:1.5}
+.card .num{position:absolute;right:1.6cqw;top:.4cqw;font-size:6.2cqw;font-weight:600;line-height:1;color:rgba(255,255,255,.05);pointer-events:none}
+.card h3{font-weight:500;font-size:1.75cqw;line-height:1.2;margin:0;color:var(--fg)}
+.card p{font-size:1.15cqw;line-height:1.55}
+.hook{align-self:flex-start;padding:.4cqw 1cqw;border-radius:30px;background:var(--gold-soft);color:var(--gold);font-size:1cqw;font-weight:600}
 
-.stat{font-family:var(--display);font-weight:800;font-size:3.2cqw;line-height:1;letter-spacing:-.03em;color:var(--gold);font-variant-numeric:tabular-nums}
-.stat-label{font-size:1.1cqw;color:var(--fg);line-height:1.45}
+.stat{font-weight:600;font-size:3.4cqw;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
+.stat-label{font-size:1.1cqw;color:var(--text);line-height:1.5}
+.cards.five .stat{font-size:3.4cqw}
 
-/* Asymmetric stat block: one figure carries the slide, two support it. */
-.stat-lead{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:1.3cqw;align-items:stretch}
-.stat-lead .card:first-child .stat{font-size:5cqw}
+.stat-lead{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1.4cqw}
 
-.huge{font-family:var(--display);font-weight:800;font-size:15cqw;line-height:.82;letter-spacing:-.05em;color:var(--gold);font-variant-numeric:tabular-nums}
-
-/* Loop: the content genuinely is a four-step cycle, so it is numbered. */
-.loop{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw}
-.step{
-  position:relative;background:rgba(24,24,27,.9);border:1px solid var(--line);
-  border-radius:10px;padding:1.6cqw;display:flex;flex-direction:column;gap:.6cqw;
-}
-.step:not(:last-child)::after{content:"";position:absolute;top:50%;right:-1cqw;width:1cqw;height:1px;background:var(--blue)}
-.step .num{font-family:var(--display);font-weight:800;font-size:1.05cqw;letter-spacing:.1em;color:var(--blue-light);font-variant-numeric:tabular-nums}
-.step h4{font-family:var(--display);font-weight:700;font-size:1.42cqw;margin:0;color:var(--fg);letter-spacing:-.01em}
-.step p{font-size:1.06cqw;line-height:1.45}
-.loop-return{display:flex;align-items:center;gap:.9cqw;font-size:1.1cqw;color:var(--blue-light);font-weight:500}
-.loop-return .arc{flex:1;height:1px;background:linear-gradient(90deg,var(--blue),rgba(37,99,235,.12))}
-
-.split{display:grid;grid-template-columns:1fr 1fr;gap:1.3cqw}
+/* ---------- Split: plain card beside a solid gold tile ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1.4cqw}
 .split-col{
-  border:1px solid var(--line);border-radius:10px;padding:1.9cqw;
-  display:flex;flex-direction:column;gap:.9cqw;background:rgba(24,24,27,.82);
+  background:var(--card);border:1px solid var(--line);border-radius:1.5cqw;
+  padding:2.2cqw;display:flex;flex-direction:column;gap:.9cqw;
 }
-.split-col.accent{border-color:var(--gold-dim);background:linear-gradient(180deg,rgba(234,179,8,.09),rgba(24,24,27,.82))}
-.split-col h3{font-family:var(--display);font-weight:700;font-size:1.5cqw;margin:0}
-.split-col p{font-size:1.22cqw;line-height:1.5}
+.split-col h3{font-weight:500;font-size:1.6cqw;line-height:1.2;margin:0;color:var(--fg)}
+.split-col p{font-size:1.18cqw;line-height:1.55}
+.split-col.accent{background:var(--gold);border-color:var(--gold)}
+.split-col.accent h3,.split-col.accent p,.split-col.accent li,.split-col.accent strong{color:var(--ink)}
 
-/* Ads slide: three square video ads framed as Facebook posts. Sized in cqw so
-   the row fits under the heading at any stage size. */
-.ads{display:grid;grid-template-columns:repeat(3,22cqw);gap:1.6cqw}
-.fbad{background:#fff;color:#050505;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+/* ---------- Lists (rc-hover-list: 6px gold squares) ---------- */
+.checks{display:grid;gap:.75cqw;padding:0;margin:0;list-style:none}
+.checks li{position:relative;padding-left:1.3cqw;font-size:1.18cqw;line-height:1.5;color:rgba(255,255,255,.85)}
+.checks li::before{content:"";position:absolute;left:0;top:.62cqw;width:.46cqw;height:.46cqw;background:var(--gold)}
+.split-col.accent .checks li::before{background:var(--ink)}
+.checks.blue li::before{background:var(--muted)}
+.split-col.accent .checks.blue li::before{background:var(--ink)}
+
+/* ---------- Table, inside a card ---------- */
+.table-wrap{background:var(--card);border:1px solid var(--line);border-radius:1.5cqw;padding:.4cqw 1.2cqw;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:1cqw 1.1cqw;border-bottom:1px solid var(--line);font-size:1.22cqw}
+th{font-weight:500;font-size:1.05cqw;color:var(--muted)}
+td{color:rgba(255,255,255,.85)}
+td.figure{color:var(--fg);font-weight:500}
+td.win{font-weight:600;color:var(--gold)}
+tbody tr:last-child td{border-bottom:0}
+table.vs th:last-child{color:var(--gold)}
+table.vs td:last-child{color:var(--fg);font-weight:500}
+table.vs td:nth-child(2){color:var(--muted)}
+
+/* ---------- Dashed gold callout (rc-leak__foot) ---------- */
+.foot{border:1px dashed rgba(234,179,8,.4);border-radius:1.5cqw;padding:1.5cqw 2cqw;max-width:none}
+.foot strong{color:var(--gold)}
+
+/* ---------- Pricing ---------- */
+.price-row{display:flex;align-items:baseline;gap:1.2cqw;flex-wrap:wrap}
+.price-big{font-weight:600;font-size:7.5cqw;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
+.price-note{font-size:1.5cqw;color:var(--fg)}
+.price-break{display:grid;grid-template-columns:auto auto;gap:1.4cqw;justify-content:start}
+.price-break div{background:var(--card);border:1px solid var(--line);border-radius:1.5cqw;padding:1.4cqw 1.8cqw;display:flex;flex-direction:column;gap:.3cqw}
+.price-break .amt{font-weight:600;font-size:1.9cqw;color:var(--fg);font-variant-numeric:tabular-nums}
+.price-break .what{font-size:1.05cqw;color:var(--text)}
+
+/* The site's small trust line under the hero CTA. */
+.pill{align-self:flex-start;font-size:1cqw;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+.title-foot{display:flex;gap:1.6cqw;align-items:center;font-size:1.15cqw;color:var(--text);flex-wrap:wrap}
+
+/* ---------- Ads slide: Facebook post frames, as .pl-fbad on the site ---------- */
+.ads{display:grid;grid-template-columns:repeat(3,20cqw);gap:1.6cqw}
+.fbad{background:#fff;color:#050505;border-radius:1.2cqw;overflow:hidden;display:flex;flex-direction:column;font-family:system-ui,-apple-system,sans-serif}
 .fbad-head{display:flex;align-items:center;gap:.7cqw;padding:.8cqw .9cqw .4cqw}
 .fbad-avatar{width:2.2cqw;height:2.2cqw;border-radius:50%;background:var(--gold);flex:0 0 auto}
 .fbad-head strong{display:block;font-size:.95cqw;font-weight:700;color:#050505}
@@ -188,89 +184,25 @@ strong{color:var(--fg);font-weight:600}
 .fbad-link strong{display:block;font-size:.85cqw;color:#050505;line-height:1.25}
 .fbad-link em{font-style:normal;font-size:.8cqw;font-weight:600;color:#050505;background:#e4e6eb;border-radius:6px;padding:.4cqw .7cqw;white-space:nowrap}
 .ads-note{font-size:1cqw;color:var(--muted);max-width:80ch}
-.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw}
-.cards.five{grid-template-columns:repeat(5,1fr)}
-.cards.five .stat{font-size:3.6cqw}
-.logos.three{grid-template-columns:repeat(3,1fr)}
-
-.logo-chip{background:#fff;border-radius:8px;height:6.2cqw;display:flex;align-items:center;justify-content:center;padding:.9cqw 1.2cqw}
-.logo-chip--dark{background:#101014;border:1px solid var(--line)}
-.logo-chip img{max-width:100%;max-height:100%;object-fit:contain}
-.name-chip{
-  background:rgba(24,24,27,.9);border:1px solid var(--line);border-radius:8px;height:6.2cqw;
-  display:flex;align-items:center;justify-content:center;padding:.9cqw;text-align:center;
-  font-family:var(--display);font-weight:700;font-size:1.06cqw;line-height:1.3;color:var(--fg);
-}
-
-.table-wrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
-th,td{text-align:left;padding:1.05cqw 1.2cqw;border-bottom:1px solid var(--line);font-size:1.3cqw}
-th{font-family:var(--display);font-weight:700;font-size:1cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-td{color:var(--fg)}
-td.figure{font-family:var(--display);font-weight:700;color:var(--fg)}
-td.win{font-family:var(--display);font-weight:800;color:var(--gold)}
-tbody tr:last-child td{border-bottom:0}
-
-.checks{display:grid;gap:.8cqw;padding:0;margin:0;list-style:none}
-.checks li{display:flex;gap:.85cqw;align-items:flex-start;font-size:1.24cqw;line-height:1.45;color:var(--fg)}
-.checks li::before{content:"";flex:0 0 auto;width:.58cqw;height:.58cqw;margin-top:.48cqw;border-radius:2px;background:var(--gold)}
-.checks.blue li::before{background:var(--blue-light)}
-
-/* Head-to-head table. The final column is ours and is weighted accordingly. */
-table.vs th:last-child{color:var(--gold)}
-table.vs td:last-child,
-table.vs th:last-child{background:rgba(234,179,8,.07);font-family:var(--display);font-weight:700;color:var(--fg)}
-table.vs td:first-child{color:var(--fg);font-weight:500}
-table.vs td:nth-child(2){color:#a1a1aa}
-
-/* ROI band. The multiples are the point of the slide, so they sit outside
-   the card grid and carry the accent. */
-.roi{
-  display:grid;grid-template-columns:auto auto 1fr;gap:2.6cqw;align-items:center;
-  border:1px solid var(--gold-dim);border-radius:10px;padding:1.9cqw 2.2cqw;
-  background:linear-gradient(180deg,rgba(234,179,8,.1),rgba(24,24,27,.82));
-}
-.roi-x{font-family:var(--display);font-weight:800;font-size:4.6cqw;line-height:1;letter-spacing:-.04em;color:var(--gold);font-variant-numeric:tabular-nums;display:block}
-.roi-label{font-size:1.08cqw;color:var(--fg);line-height:1.4;display:block;max-width:16ch}
-.roi p{font-size:1.22cqw;line-height:1.5;max-width:44ch}
-
-
-
-.price-row{display:flex;align-items:baseline;gap:1.3cqw;flex-wrap:wrap}
-.price-big{font-family:var(--display);font-weight:800;font-size:8cqw;line-height:1;letter-spacing:-.04em;color:var(--gold);font-variant-numeric:tabular-nums}
-.price-note{font-size:1.35cqw;color:var(--fg)}
-.price-break{display:flex;gap:2.4cqw;flex-wrap:wrap}
-.price-break div{display:flex;flex-direction:column;gap:.3cqw}
-.price-break .amt{font-family:var(--display);font-weight:700;font-size:1.9cqw;color:var(--fg);font-variant-numeric:tabular-nums}
-.price-break .what{font-size:1.1cqw;color:#e4e4e7}
-
-.pill{
-  display:inline-flex;align-items:center;align-self:flex-start;
-  border:1px solid var(--gold-dim);color:var(--gold);border-radius:999px;
-  padding:.5cqw 1.15cqw;font-family:var(--display);font-weight:700;
-  font-size:1cqw;letter-spacing:.1em;text-transform:uppercase;
-}
-
-.title-foot{display:flex;gap:1.6cqw;align-items:center;font-size:1.15cqw;color:#e4e4e7;flex-wrap:wrap}
 
 /* ---------- Chrome ---------- */
-.rail{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(42,42,48,.7);z-index:5}
+.rail{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.06);z-index:5}
 .rail span{display:block;height:100%;background:var(--gold);transition:width .3s ease}
-.counter{position:absolute;right:2.4cqw;bottom:2.2cqw;z-index:5;font-family:var(--display);font-weight:700;font-size:1cqw;color:var(--dim);letter-spacing:.1em;font-variant-numeric:tabular-nums}
-.mark{position:absolute;left:2.4cqw;bottom:2.2cqw;z-index:5;font-family:var(--display);font-weight:800;font-size:1cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
-.mark b{color:var(--gold)}
+.counter{position:absolute;right:2.4cqw;bottom:2.2cqw;z-index:5;font-weight:500;font-size:1cqw;color:var(--muted);font-variant-numeric:tabular-nums}
+.mark{position:absolute;left:2.4cqw;bottom:2.2cqw;z-index:5;font-weight:600;font-size:1.1cqw;color:var(--fg)}
+.mark b{color:var(--gold);font-weight:600}
 
 .nav{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;z-index:20}
 .nav button{
-  width:40px;height:40px;border-radius:8px;border:1px solid var(--line);
-  background:var(--navy-light);color:var(--fg);font-size:16px;cursor:pointer;
-  display:grid;place-items:center;transition:background .15s ease,border-color .15s ease;
+  width:42px;height:42px;border-radius:50%;border:0;
+  background:var(--gold);color:var(--ink);font-size:16px;cursor:pointer;
+  display:grid;place-items:center;transition:background .15s ease;
 }
-.nav button:hover{background:var(--surface);border-color:var(--gold-dim)}
-.nav button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.nav button:hover{background:#facc15}
+.nav button:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
-.hint{position:fixed;left:18px;bottom:24px;font-size:12px;color:var(--dim);z-index:20}
-kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--muted);font-size:11px}
+.hint{position:fixed;left:18px;bottom:24px;font-size:12px;color:var(--muted);z-index:20}
+kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--text);font-size:11px}
 
 @media (prefers-reduced-motion:reduce){
   .slide[data-active="true"] .content > *{animation:none}
@@ -287,7 +219,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-hero" role="img" aria-label="Contractor spraying roof coating on a flat roof"></div>
       <div class="content">
         <p class="eyebrow">RoofCoat Leads</p>
-        <h1>Facebook lead generation for roof coating contractors.</h1>
+        <h1>Facebook lead generation for <span>roof coating contractors.</span></h1>
         <p class="lead">We build and run the campaigns, check every inquiry against your service area, and send it straight to your phone.</p>
         <hr class="rule">
         <div class="title-foot">
@@ -302,7 +234,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-worker" role="img" aria-label="Roofer working on a flat commercial roof"></div>
       <div class="content">
         <p class="eyebrow">What we do</p>
-        <h2>We run Facebook ads for roof coating contractors only.</h2>
+        <h2>We run Facebook ads for <span>roof coating contractors only.</span></h2>
         <p class="lead">We build the campaigns, write the ads and manage them daily. The form asks each lead about property type, roof age, timeline and budget, and we check every inquiry against your service area.</p>
         <p>You never have to open Ads Manager or learn how the platform works.</p>
       </div>
@@ -313,17 +245,20 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-membrane" role="img" aria-label="Roof membrane detail"></div>
       <div class="content">
         <p class="eyebrow">The problem</p>
-        <h2 class="wide">A generalist agency learns your trade at your expense.</h2>
+        <h2 class="wide">A generalist agency learns your trade <span>at your expense.</span></h2>
         <div class="stat-lead">
           <div class="card">
+            <span class="num" aria-hidden="true">01</span>
             <span class="stat">$2&#8211;5k</span>
             <span class="stat-label">Typical monthly retainer while an agency works out what a roof coating buyer looks like.</span>
           </div>
           <div class="card">
+            <span class="num" aria-hidden="true">02</span>
             <span class="stat">3&#8211;6 mo</span>
             <span class="stat-label">How long that usually takes before the campaigns perform.</span>
           </div>
           <div class="card">
+            <span class="num" aria-hidden="true">03</span>
             <span class="stat">4&#215;</span>
             <span class="stat-label">Contractors who receive the same inquiry from a shared lead platform.</span>
           </div>
@@ -335,17 +270,20 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
     <section class="slide">
       <div class="content">
         <p class="eyebrow">The alternatives</p>
-        <h2 class="wide">Three ways contractors currently get work.</h2>
+        <h2 class="wide">Three ways contractors <span>currently get work.</span></h2>
         <div class="cards three">
           <div class="card">
+            <span class="num" aria-hidden="true">01</span>
             <h3>Shared lead platforms</h3>
             <p>Angi and HomeAdvisor sell one inquiry to three or four contractors. You compete on price against people quoting the same roof.</p>
           </div>
           <div class="card">
+            <span class="num" aria-hidden="true">02</span>
             <h3>A generalist agency</h3>
             <p>Competent at advertising and new to roof coating. They report on clicks and form fills because those are the numbers they can produce.</p>
           </div>
           <div class="card">
+            <span class="num" aria-hidden="true">03</span>
             <h3>Running it yourself</h3>
             <p>Facebook campaigns need checking daily. Most contractors are on site instead, so the account drifts and the cost per lead climbs.</p>
           </div>
@@ -357,7 +295,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
     <section class="slide">
       <div class="content">
         <p class="eyebrow">Side by side</p>
-        <h2 class="wide">Us against a generalist agency.</h2>
+        <h2 class="wide">Us against a <span>generalist agency.</span></h2>
         <div class="table-wrap">
           <table class="vs">
             <thead>
@@ -385,7 +323,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-hero" role="img" aria-label="Roof coating being applied"></div>
       <div class="content">
         <p class="eyebrow">The difference</p>
-        <h2 class="wide">Why a specialist performs faster.</h2>
+        <h2 class="wide">Why a specialist <span>performs faster.</span></h2>
         <div class="split">
           <div class="split-col">
             <h3>A new agency starts from zero</h3>
@@ -404,7 +342,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-aerial" role="img" aria-label="Aerial view of commercial flat roofs"></div>
       <div class="content">
         <p class="eyebrow">Who this is for</p>
-        <h2 class="wide">Built for coating contractors who can work the leads.</h2>
+        <h2 class="wide">Built for coating contractors who can <span>work the leads.</span></h2>
         <div class="split">
           <div class="split-col accent">
             <h3>A good fit</h3>
@@ -432,7 +370,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-aerial" role="img" aria-label="Commercial roofs from above"></div>
       <div class="content">
         <p class="eyebrow">The question everyone asks</p>
-        <h2 class="wide">Do you work with my competitor?</h2>
+        <h2 class="wide">Do you work with <span>my competitor?</span></h2>
         <div class="split">
           <div class="split-col accent">
             <h3>Your leads are exclusive</h3>
@@ -450,7 +388,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
     <section class="slide">
       <div class="content">
         <p class="eyebrow">What the ads look like</p>
-        <h2 class="wide">Video ads from our roof coating campaigns.</h2>
+        <h2 class="wide">Video ads from our <span>roof coating campaigns.</span></h2>
         <div class="ads">
           <div class="fbad">
             <div class="fbad-head"><span class="fbad-avatar"></span><div><strong>Your Coating Co.</strong><span>Sponsored</span></div></div>
@@ -480,17 +418,20 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-membrane" role="img" aria-label="Roof surface detail"></div>
       <div class="content">
         <p class="eyebrow">What to expect</p>
-        <h2 class="wide">20 to 50 inquiries a month per market.</h2>
+        <h2 class="wide"><span>20 to 50 inquiries</span> a month per market.</h2>
         <div class="cards three">
           <div class="card">
+            <span class="num" aria-hidden="true">01</span>
             <h3>Inquiries, not jobs</h3>
             <p>An inquiry is a property owner asking for a quote. How many become jobs depends on your follow-up, your pricing and your close rate.</p>
           </div>
           <div class="card">
+            <span class="num" aria-hidden="true">02</span>
             <h3>Every market is different</h3>
             <p>Roof stock, season and local competition all move the number. Some markets land near the top of the range and some near the bottom.</p>
           </div>
           <div class="card">
+            <span class="num" aria-hidden="true">03</span>
             <h3>Fast to start</h3>
             <p>Setup takes 48 hours. Most campaigns bring in their first inquiries within 72 hours of launch.</p>
           </div>
@@ -502,7 +443,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
     <section class="slide">
       <div class="content">
         <p class="eyebrow">Results</p>
-        <h2 class="wide">Inquiries from our lead sheets.</h2>
+        <h2 class="wide">Inquiries from our <span>lead sheets.</span></h2>
         <div class="cards five">
           <div class="card">
             <span class="stat">49</span>
@@ -525,7 +466,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
             <span class="stat-label">Commercial leads within 24 hours of signing. Idaho.</span>
           </div>
         </div>
-        <p><strong>One contractor&#8217;s result:</strong> $120,000 of work won in his first three months, against $9,000 paid in fee and ad spend. That is one contractor, not a typical outcome.</p>
+        <p class="foot"><strong>One contractor&#8217;s result:</strong> $120,000 of work won in his first three months, against $9,000 paid in fee and ad spend. That is one contractor, not a typical outcome.</p>
       </div>
     </section>
 
@@ -534,7 +475,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-membrane" role="img" aria-label="Roof surface detail"></div>
       <div class="content">
         <p class="eyebrow">The math</p>
-        <h2 class="wide">What one job covers.</h2>
+        <h2 class="wide">What one job <span>covers.</span></h2>
         <div class="table-wrap">
           <table>
             <thead>
@@ -560,7 +501,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
     <section class="slide">
       <div class="content">
         <p class="eyebrow">What is included</p>
-        <h2 class="wide">What $1,500 a month covers.</h2>
+        <h2 class="wide">What $1,500 a month <span>covers.</span></h2>
         <div class="split">
           <div class="split-col">
             <h3>The leads</h3>
@@ -575,7 +516,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
           <div class="split-col accent">
             <h3>Turning them into jobs</h3>
             <ul class="checks">
-              <li>Go High Level CRM on your phone</li>
+              <li>LeadConnector (Go High Level) CRM on your phone</li>
               <li>Instant text back to every new lead</li>
               <li>Missed-call text back</li>
               <li>Automated follow-up sequences</li>
@@ -587,18 +528,44 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
+    <!-- 14 . sales and marketing: the gap every lead gen company has ...... -->
+    <section class="slide">
+      <div class="content">
+        <p class="eyebrow">Sales and marketing</p>
+        <h2 class="wide">Every lead gen company has the same problem: <span>marketing can&#8217;t see what sales does.</span></h2>
+        <div class="cards three">
+          <div class="card">
+            <span class="num" aria-hidden="true">01</span>
+            <h3>The usual gap</h3>
+            <p>The agency sends leads and the contractor works them, but neither side sees the other&#8217;s half. The agency guesses which leads were good. The contractor decides the leads are bad.</p>
+          </div>
+          <div class="card">
+            <span class="num" aria-hidden="true">02</span>
+            <h3>What closes it</h3>
+            <p>Every lead&#8217;s stage and notes in LeadConnector. We can see which inquiries were quoted, which went quiet, and why.</p>
+          </div>
+          <div class="card">
+            <span class="num" aria-hidden="true">03</span>
+            <h3>What we do with it</h3>
+            <p>Each week we go through the pipeline with you and change the ads, the form or the targeting based on what your notes show.</p>
+          </div>
+        </div>
+        <p class="foot"><strong>A lead with no notes is a lead we can&#8217;t learn from.</strong> The contractors who get the most from us are the ones who keep the pipeline current.</p>
+      </div>
+    </section>
+
     <!-- 14 . how we work together after you sign ......................... -->
     <section class="slide lay-right">
       <div class="media img-worker" role="img" aria-label="Roofer at work"></div>
       <div class="content">
         <p class="eyebrow">After you sign</p>
-        <h2>How we work together.</h2>
+        <h2>How we work <span>together.</span></h2>
         <div class="split">
           <div class="split-col">
             <h3>From us</h3>
             <ul class="checks">
-              <li>A weekly call for the first 30 days</li>
-              <li>Then a monthly call and a written report</li>
+              <li>A weekly call to go through your pipeline</li>
+              <li>A review of your LeadConnector notes before each call</li>
               <li>Changes made when something is not working</li>
             </ul>
           </div>
@@ -607,12 +574,12 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
             <ul class="checks blue">
               <li>Call every new lead within five minutes</li>
               <li>Follow up at least three times</li>
-              <li>Keep your pipeline updated in the CRM</li>
-              <li>Tell us what is not working</li>
+              <li>Move each lead through the pipeline in LeadConnector</li>
+              <li>Leave notes on every lead so we can review them</li>
             </ul>
           </div>
         </div>
-        <p>Your pipeline updates are how we see which inquiries turn into jobs.</p>
+        <p>Your pipeline and notes are how we see which inquiries turn into jobs.</p>
       </div>
     </section>
 
@@ -621,7 +588,7 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-aerial" role="img" aria-label="Commercial roofs from above"></div>
       <div class="content">
         <p class="eyebrow">How we are paid</p>
-        <h2>Month to month. Cancel any time.</h2>
+        <h2>Month to month. <span>Cancel any time.</span></h2>
         <ul class="checks">
           <li>No contract. You can stop at the end of any month.</li>
           <li>No refunds for a month that has already started.</li>
@@ -650,8 +617,8 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <div class="rail"><span id="rail"></span></div>
-    <div class="mark">RoofCoat<b>.</b></div>
-    <div class="counter" id="counter">01 / 16</div>
+    <div class="mark">RoofCoat <b>Leads</b></div>
+    <div class="counter" id="counter">01 / 17</div>
   </div>
 </div>
 
