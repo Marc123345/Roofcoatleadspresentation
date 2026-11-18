@@ -1,7 +1,8 @@
 # RoofCoat Leads — pitch deck
 
 A 16-slide sales deck for RoofCoat Leads, pitching lead generation to roof
-coating contractors at $1,500/month plus $1,500 ad spend.
+coating contractors at $1,500 a month to us, plus about $50 a day of ad spend
+paid by the contractor directly to Facebook. Revised 18 November 2026.
 
 ## Viewing it
 
@@ -22,17 +23,25 @@ in a meeting room.
 | 3 | The problem: a generalist agency learns your trade at your expense |
 | 4 | Three ways contractors currently get work |
 | 5 | Us against a generalist agency (head to head) |
-| 6 | What the campaigns are optimised for |
-| 7 | The system: how the targeting improves |
-| 8 | Why it compounds |
-| 9 | Do you work with my competitor? |
-| 10 | Who is on the system (logo wall) |
-| 11 | Every contractor is month to month |
-| 12 | Results: what one contractor did in three months |
-| 13 | The cost of waiting |
-| 14 | The math: what one job covers |
-| 15 | What $1,500 a month covers |
+| 6 | Why a specialist performs faster |
+| 7 | Who this is for (and who it is not for) |
+| 8 | Do you work with my competitor? |
+| 9 | Contractors we run campaigns for (active clients only) |
+| 10 | What to expect: 20 to 50 inquiries a month per market |
+| 11 | Results: lead-sheet inquiries by region, plus one contractor's $120,000 |
+| 12 | The math: what one job covers |
+| 13 | What $1,500 a month covers |
+| 14 | How we work together after you sign |
+| 15 | Month to month, no refunds, no guarantees |
 | 16 | Pricing |
+
+A winter slide for cold markets goes between 14 and 15 once the winter plan is
+agreed with Ezra.
+
+**Keep slide 9 current.** It lists only active clients from `lib/clients.js` in
+the EZ Clients dashboard as of 18 November 2026. Paused clients (Talbet,
+Imperviase, Eco Choice) are left off, so a prospect never calls a bad
+reference. Only Five Star has a logo; the rest are name chips.
 
 ## Pre-call brief
 
@@ -63,22 +72,22 @@ regenerate `index.html`.
 
 ## Numbers used
 
-Two figures on the money slides are assumptions rather than measured values,
-and both should be checked before presenting:
-
-- **40% gross margin**, used on slide 12 to turn revenue into profit, and on
-  slide 14 to work out how long one job covers the fee.
-- **$100,000 in month one and $120,000 over three months** for the contractor
-  on slide 12. Slide 13 extrapolates from that figure.
-
-The roof sizes and coating prices on slide 14 ($4 to $7 per square foot against
-$6 to $14 for a tear-off replacement) are industry ranges, not client results.
+- **Lead-sheet figures on slide 11** (49 in 31 days Upper Midwest, 127 in three
+  months Pennsylvania, 76 in five months Indiana, 22 in about a month Oklahoma
+  and Arkansas, 2 commercial leads within 24 hours Idaho) are from the
+  September 2026 lead sheets. Confirm before showing them by region.
+- **$120,000 over three months against $9,000 paid** is one contractor's
+  result, unnamed until he agrees to be named.
+- **40% gross margin** on slide 12 is an assumption. "Months covered" there
+  count fee plus ad spend, about $3,000 a month.
+- The roof sizes and coating prices on slide 12 ($4 to $7 per square foot
+  against $6 to $14 for a tear-off replacement) are industry ranges, not
+  client results.
 
 ## Design
 
 Built on the roofcoatleads.com design system: Montserrat and Inter, `#09090b`
-ground, `#eab308` accent, with `#2563eb` reserved for the system diagram so the
-mechanism reads differently from the money.
+ground, `#eab308` accent, with `#2563eb` as a secondary accent (the "from you" lists).
 
 The deck stays dark whichever theme the viewer's browser is set to. That is
 deliberate rather than an oversight: it matches the brand and it is what
