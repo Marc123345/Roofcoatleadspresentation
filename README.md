@@ -94,8 +94,8 @@ regenerate `index.html`.
 Matches the roofcoatleads.com design system (`src/assets/css/rc.css` and
 `style.css` in the roofcoat-leads repo): Beatrice Trial at weight 500 for
 headings with the key phrase in gold, star-icon sub-titles, `#18181b` cards
-with a 20px radius and a faded corner number, solid gold feature tiles with
-dark text, a dashed gold callout, and photos as rounded cards. `#09090b`
+with a 20px radius and a faded corner number, gold-edged highlight cards (dark,
+white text, never solid yellow), a dashed gold callout, and photos as rounded cards. `#09090b`
 ground, `#eab308` gold, no other accent colour.
 
 Beatrice Trial has no punctuation glyphs, so `$ % , –` fall back to Inter

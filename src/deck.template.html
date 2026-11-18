@@ -123,9 +123,9 @@ strong{color:var(--fg);font-weight:600}
 
 /* Florida results: one gold lead card, three supporting, then the markets. */
 .fl{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;gap:1.4cqw}
-.card.gold{background:var(--gold);border-color:var(--gold)}
-.card.gold .stat{color:#050505;font-size:4.4cqw}
-.card.gold .stat-label,.card.gold strong{color:#050505;font-weight:500}
+.card.gold{background:linear-gradient(180deg,rgba(234,179,8,.16),rgba(24,24,27,1) 75%);border-color:rgba(234,179,8,.6)}
+.card.gold .stat{font-size:4.4cqw}
+.card.gold .stat-label{color:#fff}
 .markets{display:flex;flex-wrap:wrap;align-items:center;gap:.7cqw}
 .markets-label{font-size:1.05cqw;color:var(--muted);margin-right:.4cqw}
 .markets .hook{font-size:1.05cqw}
@@ -137,9 +137,11 @@ strong{color:var(--fg);font-weight:600}
 }
 .split-col h3{font-weight:500;font-size:1.6cqw;line-height:1.2;margin:0;color:var(--fg)}
 .split-col p{font-size:1.18cqw;line-height:1.55}
-.split-col.accent{background:var(--gold);border-color:var(--gold)}
-.split-col.accent h3,.split-col.accent p,.split-col.accent li,.split-col.accent strong{color:#050505}
-.split-col.accent p,.split-col.accent li{font-weight:500}
+/* Highlighted option: dark card with a gold edge and tint, never a solid
+   gold slab (dark text on bright yellow was hard to read). */
+.split-col.accent{background:linear-gradient(180deg,rgba(234,179,8,.16),rgba(24,24,27,1) 70%);border-color:rgba(234,179,8,.6)}
+.split-col.accent h3{color:var(--gold)}
+.split-col.accent p,.split-col.accent li{color:#fff}
 
 .split.roomy .split-col{padding:2.6cqw}
 .split.roomy h3{font-size:1.9cqw}
@@ -150,9 +152,9 @@ strong{color:var(--fg);font-weight:600}
 .checks{display:grid;gap:.75cqw;padding:0;margin:0;list-style:none}
 .checks li{position:relative;padding-left:1.3cqw;font-size:1.18cqw;line-height:1.5;color:rgba(255,255,255,.85)}
 .checks li::before{content:"";position:absolute;left:0;top:.62cqw;width:.46cqw;height:.46cqw;background:var(--gold)}
-.split-col.accent .checks li::before{background:var(--ink)}
+.split-col.accent .checks li::before{background:var(--gold)}
 .checks.blue li::before{background:var(--muted)}
-.split-col.accent .checks.blue li::before{background:var(--ink)}
+.split-col.accent .checks.blue li::before{background:var(--gold)}
 
 /* ---------- Table, inside a card ---------- */
 .table-wrap{background:var(--card);border:1px solid var(--line);border-radius:1.5cqw;padding:.4cqw 1.2cqw;overflow-x:auto}
