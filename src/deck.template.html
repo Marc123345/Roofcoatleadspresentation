@@ -173,6 +173,21 @@ strong{color:var(--fg);font-weight:600}
 .split-col h3{font-family:var(--display);font-weight:700;font-size:1.5cqw;margin:0}
 .split-col p{font-size:1.22cqw;line-height:1.5}
 
+/* Ads slide: three square video ads framed as Facebook posts. Sized in cqw so
+   the row fits under the heading at any stage size. */
+.ads{display:grid;grid-template-columns:repeat(3,22cqw);gap:1.6cqw}
+.fbad{background:#fff;color:#050505;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.fbad-head{display:flex;align-items:center;gap:.7cqw;padding:.8cqw .9cqw .4cqw}
+.fbad-avatar{width:2.2cqw;height:2.2cqw;border-radius:50%;background:var(--gold);flex:0 0 auto}
+.fbad-head strong{display:block;font-size:.95cqw;font-weight:700;color:#050505}
+.fbad-head span{display:block;font-size:.75cqw;color:#65676b}
+.fbad-text{font-size:.85cqw;line-height:1.35;color:#050505;padding:0 .9cqw .6cqw;max-width:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fbad-media{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#111}
+.fbad-link{display:flex;align-items:center;justify-content:space-between;gap:.6cqw;background:#f0f2f5;padding:.6cqw .9cqw}
+.fbad-link span{display:block;font-size:.65cqw;color:#65676b;letter-spacing:.02em}
+.fbad-link strong{display:block;font-size:.85cqw;color:#050505;line-height:1.25}
+.fbad-link em{font-style:normal;font-size:.8cqw;font-weight:600;color:#050505;background:#e4e6eb;border-radius:6px;padding:.4cqw .7cqw;white-space:nowrap}
+.ads-note{font-size:1cqw;color:var(--muted);max-width:80ch}
 .logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw}
 .cards.five{grid-template-columns:repeat(5,1fr)}
 .cards.five .stat{font-size:3.6cqw}
@@ -431,22 +446,32 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
-    <!-- 9 . logo wall: active clients only ............................... -->
+    <!-- 9 . the ads (same three video ads as roofcoatleads.com) .......... -->
     <section class="slide">
       <div class="content">
-        <p class="eyebrow">Who we work with</p>
-        <h2 class="wide">Contractors we run campaigns for.</h2>
-        <div class="logos three">
-          <div class="logo-chip"><img src="__LOGO_FIVESTAR__" alt="Five Star Roofing"></div>
-          <div class="name-chip">Fritsch Contracting</div>
-          <div class="name-chip">Gregory&#8217;s Roofing of Winchester</div>
-          <div class="name-chip">Mustang Ridge Exteriors</div>
-          <div class="name-chip">Independence Construction</div>
-          <div class="name-chip">Build Code Company</div>
-          <div class="name-chip">Truebilt Roofing</div>
-          <div class="name-chip">International Roofing CT</div>
-          <div class="name-chip">Ballman Roofing &amp; Coating</div>
+        <p class="eyebrow">What the ads look like</p>
+        <h2 class="wide">Video ads from our roof coating campaigns.</h2>
+        <div class="ads">
+          <div class="fbad">
+            <div class="fbad-head"><span class="fbad-avatar"></span><div><strong>Your Coating Co.</strong><span>Sponsored</span></div></div>
+            <p class="fbad-text">Extend your roof life by 15+ years for a fraction of replacement cost.</p>
+            <video class="fbad-media" src="ads/ad-1.mp4" poster="ads/ad-1.jpg" muted loop playsinline preload="metadata" aria-label="Video ad: Is your roof ready for the next season"></video>
+            <div class="fbad-link"><div><span>YOURCOATINGCO.COM</span><strong>Is Your Roof Ready for Next Season?</strong></div><em>Get Quote</em></div>
+          </div>
+          <div class="fbad">
+            <div class="fbad-head"><span class="fbad-avatar"></span><div><strong>Your Coating Co.</strong><span>Sponsored</span></div></div>
+            <p class="fbad-text">Restore your metal roof for 25% of replacement cost. 20-year warranty.</p>
+            <video class="fbad-media" src="ads/ad-2.mp4" poster="ads/ad-2.jpg" muted loop playsinline preload="metadata" aria-label="Video ad: If this was your building"></video>
+            <div class="fbad-link"><div><span>YOURCOATINGCO.COM</span><strong>Free Roof Coating Inspection</strong></div><em>Book Now</em></div>
+          </div>
+          <div class="fbad">
+            <div class="fbad-head"><span class="fbad-avatar"></span><div><strong>Your Coating Co.</strong><span>Sponsored</span></div></div>
+            <p class="fbad-text">Save 30% on cooling costs. Stop leaks for good. No full replacement needed.</p>
+            <video class="fbad-media" src="ads/ad-3.mp4" poster="ads/ad-3.jpg" muted loop playsinline preload="metadata" aria-label="Video ad: Before you replace it"></video>
+            <div class="fbad-link"><div><span>YOURCOATINGCO.COM</span><strong>Coat It Before You Replace It</strong></div><em>Learn More</em></div>
+          </div>
         </div>
+        <p class="ads-note">Example ads. The savings and warranty terms in the copy are illustrations. Your campaign is written for your company, coating type, territory and warranty.</p>
       </div>
     </section>
 
@@ -651,6 +676,13 @@ kbd{font-family:var(--body);border:1px solid var(--line);border-bottom-width:2px
     i = Math.max(0, Math.min(slides.length - 1, n));
     slides.forEach(function (s, idx) {
       s.setAttribute("data-active", idx === i ? "true" : "false");
+    });
+    // Ad videos play only on the slide that is showing.
+    slides.forEach(function (s, idx) {
+      s.querySelectorAll("video").forEach(function (v) {
+        if (idx === i) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        else { v.pause(); }
+      });
     });
     rail.style.width = ((i + 1) / slides.length * 100) + "%";
     counter.textContent = pad(i + 1) + " / " + pad(slides.length);

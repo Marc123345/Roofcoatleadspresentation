@@ -7,8 +7,8 @@ paid by the contractor directly to Facebook. Revised 18 November 2026.
 ## Viewing it
 
 Open `index.html` in a browser. Nothing to install and no network needed: the
-fonts, logos and photographs are all embedded in the file, so it works offline
-in a meeting room.
+fonts and photographs are embedded in the file, and the slide 9 ad videos sit
+in `ads/`, so the folder works offline in a meeting room.
 
 - Arrow keys, space or click to move between slides
 - `F` for full screen
@@ -26,7 +26,7 @@ in a meeting room.
 | 6 | Why a specialist performs faster |
 | 7 | Who this is for (and who it is not for) |
 | 8 | Do you work with my competitor? |
-| 9 | Contractors we run campaigns for (active clients only) |
+| 9 | What the ads look like: the three video ads from roofcoatleads.com |
 | 10 | What to expect: 20 to 50 inquiries a month per market |
 | 11 | Results: lead-sheet inquiries by region, plus one contractor's $120,000 |
 | 12 | The math: what one job covers |
@@ -38,10 +38,10 @@ in a meeting room.
 A winter slide for cold markets goes between 14 and 15 once the winter plan is
 agreed with Ezra.
 
-**Keep slide 9 current.** It lists only active clients from `lib/clients.js` in
-the EZ Clients dashboard as of 18 November 2026. Paused clients (Talbet,
-Imperviase, Eco Choice) are left off, so a prospect never calls a bad
-reference. Only Five Star has a logo; the rest are name chips.
+**Slide 9 videos** live in `ads/` next to `index.html` (same three ads as the
+website's ad section, from ImageKit). They play muted on a loop while slide 9
+is showing. The rest of the deck is still self-contained, but to show the ads
+offline you need the `ads/` folder alongside `index.html`.
 
 ## Pre-call brief
 
