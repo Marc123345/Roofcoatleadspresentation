@@ -133,6 +133,11 @@ strong{color:var(--fg);font-weight:600}
 .split-col.accent h3,.split-col.accent p,.split-col.accent li,.split-col.accent strong{color:#050505}
 .split-col.accent p,.split-col.accent li{font-weight:500}
 
+.split.roomy .split-col{padding:2.6cqw}
+.split.roomy h3{font-size:1.9cqw}
+.split.roomy .checks{gap:1cqw}
+.split.roomy .checks li{font-size:1.3cqw;padding-left:1.4cqw}
+.split.roomy .checks li::before{top:.68cqw}
 /* ---------- Lists (rc-hover-list: 6px gold squares) ---------- */
 .checks{display:grid;gap:.75cqw;padding:0;margin:0;list-style:none}
 .checks li{position:relative;padding-left:1.3cqw;font-size:1.18cqw;line-height:1.5;color:rgba(255,255,255,.85)}
@@ -561,18 +566,19 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
-    <!-- 14 . how we work together after you sign ......................... -->
-    <section class="slide lay-right">
-      <div class="media img-worker" role="img" aria-label="Roofer at work"></div>
+    <!-- 15 . how we work together after you sign ......................... -->
+    <!-- Full width, no photo: two lists side by side need the room, and the
+         cramped photo layout wrapped every line. -->
+    <section class="slide">
       <div class="content">
         <p class="eyebrow">After you sign</p>
-        <h2>How we work <span>together.</span></h2>
-        <div class="split">
+        <h2 class="wide">How we work <span>together.</span></h2>
+        <div class="split roomy">
           <div class="split-col">
             <h3>From us</h3>
             <ul class="checks">
               <li>A weekly call to go through your pipeline</li>
-              <li>A review of your LeadConnector notes before each call</li>
+              <li>We read your LeadConnector notes before each call</li>
               <li>Changes made when something is not working</li>
             </ul>
           </div>
@@ -581,12 +587,12 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
             <ul class="checks blue">
               <li>Call every new lead within five minutes</li>
               <li>Follow up at least three times</li>
-              <li>Move each lead through the pipeline in LeadConnector</li>
+              <li>Update each lead&#8217;s stage in LeadConnector</li>
               <li>Leave notes on every lead so we can review them</li>
             </ul>
           </div>
         </div>
-        <p>Your pipeline and notes are how we see which inquiries turn into jobs.</p>
+        <p class="foot"><strong>Your pipeline and notes are how we see which inquiries turn into jobs.</strong> They are what the weekly call runs on.</p>
       </div>
     </section>
 
