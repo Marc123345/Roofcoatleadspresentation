@@ -16,8 +16,7 @@ in `ads/`, so the folder works offline in a meeting room.
 
 ## Slides
 
-22 slides in four numbered sections. Each section opens with a divider
-slide; every content slide carries a running section label top left.
+22 slides in four numbered sections, each opened by a divider slide.
 
 | # | Slide |
 |---|---|

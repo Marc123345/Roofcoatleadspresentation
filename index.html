@@ -188,7 +188,7 @@ table.vs td:nth-child(2){color:var(--muted)}
 .title-foot{display:flex;gap:1.6cqw;align-items:center;font-size:1.15cqw;color:var(--text);flex-wrap:wrap}
 
 /* ---------- Ads slide: Facebook post frames, as .pl-fbad on the site ---------- */
-.ads{display:grid;grid-template-columns:repeat(3,19cqw);gap:1.4cqw}
+.ads{display:grid;grid-template-columns:repeat(3,20cqw);gap:1.6cqw}
 .fbad{background:#fff;color:#050505;border-radius:1.2cqw;overflow:hidden;display:flex;flex-direction:column;font-family:system-ui,-apple-system,sans-serif}
 .fbad-head{display:flex;align-items:center;gap:.7cqw;padding:.8cqw .9cqw .4cqw}
 .fbad-avatar{width:2.2cqw;height:2.2cqw;border-radius:50%;background:var(--gold);flex:0 0 auto}
@@ -205,21 +205,9 @@ table.vs td:nth-child(2){color:var(--muted)}
 .fbad-play svg{width:1.7cqw;height:1.7cqw;margin-left:.25cqw}
 .fbad-play:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .fbad-video.is-playing .fbad-play{display:none}
-.ads-row{display:grid;grid-template-columns:auto 1fr;gap:2.4cqw;align-items:center}
-.ads-aside{display:flex;flex-direction:column;gap:1cqw}
-.ads-aside p{font-size:1.2cqw}
-.ads-aside .ads-note{font-size:1cqw}
 .ads-note{font-size:1cqw;color:var(--muted);max-width:80ch}
 
-/* ---------- Structure: running section label, dividers, agenda ---------- */
-/* Content slides are top-aligned so every heading sits on the same line,
-   slide after slide. Title, agenda and dividers stay centred. */
-.content{justify-content:flex-start;padding-top:8.2cqw}
-.slide[data-chrome="off"] .content{justify-content:center;padding-top:5.5cqw}
-.section-tag{position:absolute;top:2.6cqw;left:6cqw;z-index:5;display:flex;align-items:center;gap:.8cqw;font-size:1cqw;color:var(--muted)}
-.section-tag b{color:var(--gold);font-weight:600}
-.section-tag::after{content:"";width:3.2cqw;height:1px;background:var(--line);margin-left:.4cqw}
-.section-tag[hidden]{display:none}
+/* ---------- Structure: dividers and agenda ---------- */
 
 .divider .content{max-width:62%}
 .divider-num{position:absolute;right:4cqw;bottom:-4cqw;font-size:34cqw;font-weight:600;line-height:1;color:rgba(255,255,255,.04);pointer-events:none;z-index:1}
@@ -335,7 +323,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     <section data-section="01 The problem" class="slide lay-strip">
       <div class="media img-membrane" role="img" aria-label="Roof membrane detail"></div>
       <div class="content">
-        <p class="eyebrow">The cost of a generalist</p>
+        <p class="eyebrow">The problem</p>
         <h2 class="wide">A generalist agency learns your trade <span>at your expense.</span></h2>
         <div class="stat-lead">
           <div class="card">
@@ -496,8 +484,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       <div class="content">
         <p class="eyebrow">What the ads look like</p>
         <h2 class="wide">Video ads from our <span>roof coating campaigns.</span></h2>
-        <div class="ads-row">
-          <div class="ads">
+        <div class="ads">
           <div class="fbad">
             <div class="fbad-head"><span class="fbad-avatar"></span><div><strong>Your Coating Co.</strong><span>Sponsored</span></div></div>
             <p class="fbad-text">Extend your roof life by 15+ years for a fraction of replacement cost.</p>
@@ -517,13 +504,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
             <div class="fbad-link"><div><span>YOURCOATINGCO.COM</span><strong>Coat It Before You Replace It</strong></div><em>Learn More</em></div>
           </div>
         </div>
-          <aside class="ads-aside">
-            <span class="markets-label">We run them on</span>
-            <div class="markets"><span class="hook">Facebook</span><span class="hook">Instagram</span><span class="hook">YouTube</span></div>
-            <p>Click any ad to play it with sound.</p>
-            <p class="ads-note">Example ads. The savings and warranty terms in the copy are illustrations. Your campaign is written for your company, coating type, territory and warranty.</p>
-          </aside>
-        </div>
+        <p class="ads-note"><strong>Run on Facebook, Instagram and YouTube.</strong> Click an ad to play it with sound. These are example ads: the savings and warranty terms are illustrations, and your campaign is written for your company, coating type, territory and warranty.</p>
       </div>
     </section>
 
@@ -762,7 +743,6 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
-    <div class="section-tag" id="section-tag" hidden></div>
     <div class="rail"><span id="rail"></span></div>
     <div class="mark">RoofCoat <b>Leads</b></div>
     <div class="counter" id="counter">01 / 22</div>
@@ -782,7 +762,6 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
   var rail = document.getElementById("rail");
   var counter = document.getElementById("counter");
   var stage = document.getElementById("stage");
-  var tag = document.getElementById("section-tag");
   var i = 0;
 
   function pad(n) { return n < 10 ? "0" + n : String(n); }
@@ -796,9 +775,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     // never starts on its own (a focused video otherwise takes space/arrows).
     document.querySelectorAll("video").forEach(function (v) { v.pause(); });
     if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
-    var sec = slides[i].getAttribute("data-section");
-    if (sec) { tag.hidden = false; tag.innerHTML = "<b>" + sec.slice(0, 2) + "</b>" + sec.slice(3); }
-    else { tag.hidden = true; }
+
     rail.style.width = ((i + 1) / slides.length * 100) + "%";
     counter.textContent = pad(i + 1) + " / " + pad(slides.length);
   }
