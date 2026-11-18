@@ -121,6 +121,14 @@ strong{color:var(--fg);font-weight:600}
 
 .stat-lead{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1.4cqw}
 
+/* Florida results: one gold lead card, three supporting, then the markets. */
+.fl{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;gap:1.4cqw}
+.card.gold{background:var(--gold);border-color:var(--gold)}
+.card.gold .stat{color:#050505;font-size:4.4cqw}
+.card.gold .stat-label,.card.gold strong{color:#050505;font-weight:500}
+.markets{display:flex;flex-wrap:wrap;align-items:center;gap:.7cqw}
+.markets-label{font-size:1.05cqw;color:var(--muted);margin-right:.4cqw}
+.markets .hook{font-size:1.05cqw}
 /* ---------- Split: plain card beside a solid gold tile ---------- */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:1.4cqw}
 .split-col{
@@ -451,34 +459,35 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
-    <!-- 11 . results, from the lead sheets ............................... -->
+    <!-- 11 . results: Florida track record (client lead sheet) ........... -->
     <section class="slide">
       <div class="content">
-        <p class="eyebrow">Results</p>
-        <h2 class="wide">Inquiries from our <span>lead sheets.</span></h2>
-        <div class="cards five">
-          <div class="card">
-            <span class="stat">49</span>
-            <span class="stat-label">Inquiries in 31 days. Upper Midwest.</span>
+        <p class="eyebrow">Results: Florida</p>
+        <h2 class="wide"><span>287 Florida property owners</span> asked for a roof coating quote.</h2>
+        <p>One contractor&#8217;s campaign.</p>
+        <div class="fl">
+          <div class="card gold">
+            <span class="stat">231</span>
+            <span class="stat-label"><strong>Commercial and industrial buildings.</strong> 80% of all inquiries.</span>
           </div>
           <div class="card">
-            <span class="stat">127</span>
-            <span class="stat-label">Inquiries in three months. Pennsylvania.</span>
+            <span class="stat">56</span>
+            <span class="stat-label">Residential inquiries on top of that.</span>
           </div>
           <div class="card">
-            <span class="stat">76</span>
-            <span class="stat-label">Inquiries in five months. Indiana.</span>
+            <span class="stat">136</span>
+            <span class="stat-label">Cities and towns.</span>
           </div>
           <div class="card">
-            <span class="stat">22</span>
-            <span class="stat-label">Inquiries in about a month. Oklahoma and Arkansas.</span>
-          </div>
-          <div class="card">
-            <span class="stat">2</span>
-            <span class="stat-label">Commercial leads within 24 hours of signing. Idaho.</span>
+            <span class="stat">50</span>
+            <span class="stat-label">Of Florida&#8217;s 67 counties.</span>
           </div>
         </div>
-        <p class="foot"><strong>One contractor&#8217;s result:</strong> $120,000 of work won in his first three months, against $9,000 paid in fee and ad spend. That is one contractor, not a typical outcome.</p>
+        <div class="markets">
+          <span class="markets-label">Top markets</span>
+          <span class="hook">Miami 20</span><span class="hook">Tampa 15</span><span class="hook">Orlando 13</span><span class="hook">Jacksonville 9</span><span class="hook">Fort Lauderdale 7</span><span class="hook">Ocala 7</span>
+        </div>
+        <p class="ads-note">Unique inquiries, repeat submissions removed. These are form inquiries, including about 13% with incomplete addresses. Source: client lead sheet.</p>
       </div>
     </section>
 

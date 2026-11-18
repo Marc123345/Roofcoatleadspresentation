@@ -28,7 +28,7 @@ in `ads/`, so the folder works offline in a meeting room.
 | 8 | Do you work with my competitor? |
 | 9 | What the ads look like: the three video ads from roofcoatleads.com |
 | 10 | What to expect: 20 to 50 inquiries a month per market |
-| 11 | Results: lead-sheet inquiries by region, plus one contractor's $120,000 |
+| 11 | Results: Florida track record (287 inquiries, one contractor campaign) |
 | 12 | The math: what one job covers |
 | 13 | What $1,500 a month covers |
 | 14 | Sales and marketing: the gap every lead gen company has, and how LeadConnector notes close it |
@@ -73,12 +73,16 @@ regenerate `index.html`.
 
 ## Numbers used
 
-- **Lead-sheet figures on slide 11** (49 in 31 days Upper Midwest, 127 in three
-  months Pennsylvania, 76 in five months Indiana, 22 in about a month Oklahoma
-  and Arkansas, 2 commercial leads within 24 hours Idaho) are from the
-  September 2026 lead sheets. Confirm before showing them by region.
-- **$120,000 over three months against $9,000 paid** is one contractor's
-  result, unnamed until he agrees to be named.
+- **Florida figures on slide 11** come from one contractor's lead sheet:
+  287 unique inquiries (repeats removed), 231 commercial and industrial (80%),
+  56 residential, 136 cities and towns, 50 of 67 counties; top markets Miami
+  20, Tampa 15, Orlando 13, Jacksonville 9, Fort Lauderdale 7, Ocala 7. The
+  sheet has no dates, so the slide gives no time period. About 13% have
+  incomplete or junk addresses, which is why the slide says "inquiries", never
+  "qualified leads". Add "in X months" to the headline once the run length is
+  known.
+- The regional lead-sheet figures and the $120,000 story were taken off
+  slide 11 on 18 November 2026 in favour of Florida.
 - **40% gross margin** on slide 12 is an assumption. "Months covered" there
   count fee plus ad spend, about $3,000 a month.
 - The roof sizes and coating prices on slide 12 ($4 to $7 per square foot
