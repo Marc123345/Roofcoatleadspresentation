@@ -19,8 +19,8 @@
   --card:#18181b;
   --line:rgba(255,255,255,.1);
   --fg:#ffffff;
-  --text:rgba(255,255,255,.72);
-  --muted:rgba(255,255,255,.5);
+  --text:rgba(255,255,255,.8);
+  --muted:rgba(255,255,255,.62);
   --gold:#eab308;
   --gold-soft:rgba(234,179,8,.12);
   --img-hero:url(__IMG_HERO__);
@@ -71,7 +71,7 @@ body{
 
 /* Full bleed, as the site hero: photo behind, dark wash on the copy side. */
 .lay-bleed .media{inset:0}
-.lay-bleed .media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,9,11,.96) 0%,rgba(9,9,11,.88) 45%,rgba(9,9,11,.45) 100%)}
+.lay-bleed .media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,9,11,.97) 0%,rgba(9,9,11,.92) 50%,rgba(9,9,11,.55) 100%)}
 .lay-bleed .content{max-width:62%}
 
 /* Photo as a rounded card beside the copy (the site's image tiles). */
@@ -109,8 +109,9 @@ strong{color:var(--fg);font-weight:600}
   background:var(--card);border:1px solid var(--line);border-radius:1.5cqw;
   padding:2.4cqw 2.2cqw;display:flex;flex-direction:column;gap:.9cqw;
 }
-.card .num{position:absolute;right:1.6cqw;top:.4cqw;font-size:6.2cqw;font-weight:600;line-height:1;color:rgba(255,255,255,.05);pointer-events:none}
-.card h3{font-weight:500;font-size:1.75cqw;line-height:1.2;margin:0;color:var(--fg)}
+.card .num{position:absolute;right:1.4cqw;top:.6cqw;font-size:5cqw;font-weight:600;line-height:1;color:rgba(255,255,255,.06);pointer-events:none}
+.card h3{font-weight:500;font-size:1.75cqw;line-height:1.2;margin:0;color:var(--fg);position:relative;z-index:1}
+.card:has(.num) h3,.card:has(.num) .stat{padding-right:5.2cqw}
 .card p{font-size:1.15cqw;line-height:1.55}
 .hook{align-self:flex-start;padding:.4cqw 1cqw;border-radius:30px;background:var(--gold-soft);color:var(--gold);font-size:1cqw;font-weight:600}
 
@@ -129,7 +130,8 @@ strong{color:var(--fg);font-weight:600}
 .split-col h3{font-weight:500;font-size:1.6cqw;line-height:1.2;margin:0;color:var(--fg)}
 .split-col p{font-size:1.18cqw;line-height:1.55}
 .split-col.accent{background:var(--gold);border-color:var(--gold)}
-.split-col.accent h3,.split-col.accent p,.split-col.accent li,.split-col.accent strong{color:var(--ink)}
+.split-col.accent h3,.split-col.accent p,.split-col.accent li,.split-col.accent strong{color:#050505}
+.split-col.accent p,.split-col.accent li{font-weight:500}
 
 /* ---------- Lists (rc-hover-list: 6px gold squares) ---------- */
 .checks{display:grid;gap:.75cqw;padding:0;margin:0;list-style:none}
@@ -183,6 +185,11 @@ table.vs td:nth-child(2){color:var(--muted)}
 .fbad-link span{display:block;font-size:.65cqw;color:#65676b;letter-spacing:.02em}
 .fbad-link strong{display:block;font-size:.85cqw;color:#050505;line-height:1.25}
 .fbad-link em{font-style:normal;font-size:.8cqw;font-weight:600;color:#050505;background:#e4e6eb;border-radius:6px;padding:.4cqw .7cqw;white-space:nowrap}
+.fbad-video{position:relative}
+.fbad-play{position:absolute;inset:0;margin:auto;width:4.4cqw;height:4.4cqw;border-radius:50%;border:0;background:var(--gold);color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 .4cqw 1.6cqw rgba(0,0,0,.45)}
+.fbad-play svg{width:1.7cqw;height:1.7cqw;margin-left:.25cqw}
+.fbad-play:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.fbad-video.is-playing .fbad-play{display:none}
 .ads-note{font-size:1cqw;color:var(--muted);max-width:80ch}
 
 /* ---------- Chrome ---------- */
@@ -219,7 +226,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-hero" role="img" aria-label="Contractor spraying roof coating on a flat roof"></div>
       <div class="content">
         <p class="eyebrow">RoofCoat Leads</p>
-        <h1>Facebook lead generation for <span>roof coating contractors.</span></h1>
+        <h1>Facebook, Instagram and YouTube ads for <span>roof coating contractors.</span></h1>
         <p class="lead">We build and run the campaigns, check every inquiry against your service area, and send it straight to your phone.</p>
         <hr class="rule">
         <div class="title-foot">
@@ -234,9 +241,9 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       <div class="media img-worker" role="img" aria-label="Roofer working on a flat commercial roof"></div>
       <div class="content">
         <p class="eyebrow">What we do</p>
-        <h2>We run Facebook ads for <span>roof coating contractors only.</span></h2>
+        <h2>We run Facebook, Instagram and YouTube ads for <span>roof coating contractors only.</span></h2>
         <p class="lead">We build the campaigns, write the ads and manage them daily. The form asks each lead about property type, roof age, timeline and budget, and we check every inquiry against your service area.</p>
-        <p>You never have to open Ads Manager or learn how the platform works.</p>
+        <p>You never have to open an ads dashboard or learn how any of the platforms work.</p>
       </div>
     </section>
 
@@ -285,7 +292,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
           <div class="card">
             <span class="num" aria-hidden="true">03</span>
             <h3>Running it yourself</h3>
-            <p>Facebook campaigns need checking daily. Most contractors are on site instead, so the account drifts and the cost per lead climbs.</p>
+            <p>Ad campaigns need checking daily. Most contractors are on site instead, so the account drifts and the cost per lead climbs.</p>
           </div>
         </div>
       </div>
@@ -311,7 +318,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
               <tr><td>What the campaigns start from</td><td>Your account alone</td><td>Campaigns already tested across our markets</td></tr>
               <tr><td>Time before it performs</td><td>3 to 6 months</td><td>First leads usually within 72 hours</td></tr>
               <tr><td>Commitment</td><td>Usually 6 to 12 months</td><td>Month to month</td></tr>
-              <tr><td>Monthly cost</td><td>$2,000 to $5,000 plus ad spend</td><td>$1,500, plus about $50 a day paid directly to Facebook</td></tr>
+              <tr><td>Monthly cost</td><td>$2,000 to $5,000 plus ad spend</td><td>$1,500, plus about $50 a day paid directly to the ad platforms</td></tr>
             </tbody>
           </table>
         </div>
@@ -393,23 +400,23 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
           <div class="fbad">
             <div class="fbad-head"><span class="fbad-avatar"></span><div><strong>Your Coating Co.</strong><span>Sponsored</span></div></div>
             <p class="fbad-text">Extend your roof life by 15+ years for a fraction of replacement cost.</p>
-            <video class="fbad-media" src="ads/ad-1.mp4" poster="ads/ad-1.jpg" muted loop playsinline preload="metadata" aria-label="Video ad: Is your roof ready for the next season"></video>
+            <div class="fbad-video"><video class="fbad-media" src="ads/ad-1.mp4" poster="ads/ad-1.jpg" controls playsinline preload="metadata" aria-label="Video ad: Is your roof ready for the next season"></video><button type="button" class="fbad-play" aria-label="Play video ad: is your roof ready for the next season"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></button></div>
             <div class="fbad-link"><div><span>YOURCOATINGCO.COM</span><strong>Is Your Roof Ready for Next Season?</strong></div><em>Get Quote</em></div>
           </div>
           <div class="fbad">
             <div class="fbad-head"><span class="fbad-avatar"></span><div><strong>Your Coating Co.</strong><span>Sponsored</span></div></div>
             <p class="fbad-text">Restore your metal roof for 25% of replacement cost. 20-year warranty.</p>
-            <video class="fbad-media" src="ads/ad-2.mp4" poster="ads/ad-2.jpg" muted loop playsinline preload="metadata" aria-label="Video ad: If this was your building"></video>
+            <div class="fbad-video"><video class="fbad-media" src="ads/ad-2.mp4" poster="ads/ad-2.jpg" controls playsinline preload="metadata" aria-label="Video ad: If this was your building"></video><button type="button" class="fbad-play" aria-label="Play video ad: if this was your building"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></button></div>
             <div class="fbad-link"><div><span>YOURCOATINGCO.COM</span><strong>Free Roof Coating Inspection</strong></div><em>Book Now</em></div>
           </div>
           <div class="fbad">
             <div class="fbad-head"><span class="fbad-avatar"></span><div><strong>Your Coating Co.</strong><span>Sponsored</span></div></div>
             <p class="fbad-text">Save 30% on cooling costs. Stop leaks for good. No full replacement needed.</p>
-            <video class="fbad-media" src="ads/ad-3.mp4" poster="ads/ad-3.jpg" muted loop playsinline preload="metadata" aria-label="Video ad: Before you replace it"></video>
+            <div class="fbad-video"><video class="fbad-media" src="ads/ad-3.mp4" poster="ads/ad-3.jpg" controls playsinline preload="metadata" aria-label="Video ad: Before you replace it"></video><button type="button" class="fbad-play" aria-label="Play video ad: before you replace it"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></button></div>
             <div class="fbad-link"><div><span>YOURCOATINGCO.COM</span><strong>Coat It Before You Replace It</strong></div><em>Learn More</em></div>
           </div>
         </div>
-        <p class="ads-note">Example ads. The savings and warranty terms in the copy are illustrations. Your campaign is written for your company, coating type, territory and warranty.</p>
+        <p class="ads-note"><strong>Run on Facebook, Instagram and YouTube.</strong> Click an ad to play it with sound. These are example ads: the savings and warranty terms are illustrations, and your campaign is written for your company, coating type, territory and warranty.</p>
       </div>
     </section>
 
@@ -507,7 +514,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
             <h3>The leads</h3>
             <ul class="checks">
               <li>Campaign build and daily management</li>
-              <li>Ad creative, written and designed</li>
+              <li>Ad creative for Facebook, Instagram and YouTube</li>
               <li>Your website and a landing page built for the offer</li>
               <li>Form questions on property type, roof age, timeline and budget</li>
               <li>Call and lead tracking</li>
@@ -609,7 +616,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
         </div>
         <div class="price-break">
           <div><span class="amt">$1,500</span><span class="what">Management, paid to RoofCoat Leads</span></div>
-          <div><span class="amt">About $50 a day</span><span class="what">Ad spend, on your own card, paid directly to Facebook</span></div>
+          <div><span class="amt">About $50 a day</span><span class="what">Ad spend, on your own card, paid directly to Meta and YouTube</span></div>
         </div>
         <span class="pill">Month to month &#183; Cancel any time</span>
         <p class="lead">Setup takes 48 hours. First leads usually arrive within 72 hours of launch.</p>
@@ -647,8 +654,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     // Ad videos play only on the slide that is showing.
     slides.forEach(function (s, idx) {
       s.querySelectorAll("video").forEach(function (v) {
-        if (idx === i) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-        else { v.pause(); }
+        if (idx !== i) { v.pause(); }
       });
     });
     rail.style.width = ((i + 1) / slides.length * 100) + "%";
@@ -670,9 +676,23 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
   });
 
   stage.addEventListener("click", function (e) {
-    if (e.target.closest("button")) return;
+    if (e.target.closest("button, .fbad")) return;
     var r = stage.getBoundingClientRect();
     show(e.clientX - r.left < r.width / 3 ? i - 1 : i + 1);
+  });
+
+
+  // Ads: each video plays on click, with sound; starting one pauses the others.
+  var ads = Array.prototype.slice.call(document.querySelectorAll(".fbad-video"));
+  ads.forEach(function (box) {
+    var v = box.querySelector("video");
+    box.querySelector(".fbad-play").addEventListener("click", function () { v.play(); });
+    v.addEventListener("play", function () {
+      box.classList.add("is-playing");
+      ads.forEach(function (o) { var ov = o.querySelector("video"); if (ov !== v) ov.pause(); });
+    });
+    v.addEventListener("pause", function () { box.classList.remove("is-playing"); });
+    v.addEventListener("ended", function () { box.classList.remove("is-playing"); });
   });
 
   show(0);
