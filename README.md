@@ -1,6 +1,6 @@
 # RoofCoat Leads — pitch deck
 
-A 17-slide sales deck for RoofCoat Leads, pitching lead generation to roof
+A 22-slide sales deck for RoofCoat Leads, pitching lead generation to roof
 coating contractors at $1,500 a month to us, plus about $50 a day of ad spend
 paid by the contractor directly to Facebook. Revised 18 November 2026.
 
@@ -16,32 +16,39 @@ in `ads/`, so the folder works offline in a meeting room.
 
 ## Slides
 
+22 slides in four numbered sections. Each section opens with a divider
+slide; every content slide carries a running section label top left.
+
 | # | Slide |
 |---|---|
 | 1 | Title |
 | 2 | What we do |
-| 3 | The problem: a generalist agency learns your trade at your expense |
-| 4 | Three ways contractors currently get work |
-| 5 | Us against a generalist agency (head to head) |
-| 6 | Why a specialist performs faster |
-| 7 | Who this is for (and who it is not for) |
-| 8 | Do you work with my competitor? |
-| 9 | What the ads look like: the three video ads from roofcoatleads.com |
-| 10 | What to expect: 20 to 50 inquiries a month per market |
-| 11 | Results: Florida track record (287 inquiries, one contractor campaign) |
-| 12 | The math: what one job covers |
-| 13 | What $1,500 a month covers |
-| 14 | Sales and marketing: the gap every lead gen company has, and how LeadConnector notes close it |
-| 15 | How we work together after you sign (weekly calls, pipeline and notes in LeadConnector) |
-| 16 | Month to month, no refunds, no guarantees |
-| 17 | Pricing |
+| 3 | Agenda (the four sections) |
+| 4 | **Section 01: The problem** (divider) |
+| 5 | A generalist agency learns your trade at your expense |
+| 6 | Three ways contractors currently get work |
+| 7 | Us against a generalist agency |
+| 8 | **Section 02: Our approach** (divider) |
+| 9 | Why a specialist performs faster |
+| 10 | Who this is for |
+| 11 | Do you work with my competitor? |
+| 12 | The ads: three video ads, click to play (Facebook, Instagram, YouTube) |
+| 13 | **Section 03: Results** (divider) |
+| 14 | What to expect: 20 to 50 inquiries a month per market |
+| 15 | Florida track record (287 inquiries, one contractor campaign) |
+| 16 | The math: what one job covers |
+| 17 | **Section 04: Working together** (divider) |
+| 18 | What $1,500 a month covers |
+| 19 | Sales and marketing: the gap every lead gen company has |
+| 20 | How we work together (weekly calls, LeadConnector pipeline and notes) |
+| 21 | Month to month, no refunds, no guarantees |
+| 22 | Pricing |
 
-A winter slide for cold markets goes between 15 and 16 once the winter plan is
+A winter slide for cold markets goes between 20 and 21 once the winter plan is
 agreed with Ezra.
 
-**Slide 9 videos** live in `ads/` next to `index.html` (same three ads as the
-website's ad section, from ImageKit). They play muted on a loop while slide 9
-is showing. The rest of the deck is still self-contained, but to show the ads
+**Slide 12 videos** live in `ads/` next to `index.html` (same three ads as the
+website's ad section, from ImageKit). They play muted on a loop when clicked. The rest of the deck is still self-contained, but to show the ads
 offline you need the `ads/` folder alongside `index.html`.
 
 ## Pre-call brief

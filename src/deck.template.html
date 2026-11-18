@@ -188,7 +188,7 @@ table.vs td:nth-child(2){color:var(--muted)}
 .title-foot{display:flex;gap:1.6cqw;align-items:center;font-size:1.15cqw;color:var(--text);flex-wrap:wrap}
 
 /* ---------- Ads slide: Facebook post frames, as .pl-fbad on the site ---------- */
-.ads{display:grid;grid-template-columns:repeat(3,20cqw);gap:1.6cqw}
+.ads{display:grid;grid-template-columns:repeat(3,19cqw);gap:1.4cqw}
 .fbad{background:#fff;color:#050505;border-radius:1.2cqw;overflow:hidden;display:flex;flex-direction:column;font-family:system-ui,-apple-system,sans-serif}
 .fbad-head{display:flex;align-items:center;gap:.7cqw;padding:.8cqw .9cqw .4cqw}
 .fbad-avatar{width:2.2cqw;height:2.2cqw;border-radius:50%;background:var(--gold);flex:0 0 auto}
@@ -205,7 +205,31 @@ table.vs td:nth-child(2){color:var(--muted)}
 .fbad-play svg{width:1.7cqw;height:1.7cqw;margin-left:.25cqw}
 .fbad-play:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .fbad-video.is-playing .fbad-play{display:none}
+.ads-row{display:grid;grid-template-columns:auto 1fr;gap:2.4cqw;align-items:center}
+.ads-aside{display:flex;flex-direction:column;gap:1cqw}
+.ads-aside p{font-size:1.2cqw}
+.ads-aside .ads-note{font-size:1cqw}
 .ads-note{font-size:1cqw;color:var(--muted);max-width:80ch}
+
+/* ---------- Structure: running section label, dividers, agenda ---------- */
+/* Content slides are top-aligned so every heading sits on the same line,
+   slide after slide. Title, agenda and dividers stay centred. */
+.content{justify-content:flex-start;padding-top:8.2cqw}
+.slide[data-chrome="off"] .content{justify-content:center;padding-top:5.5cqw}
+.section-tag{position:absolute;top:2.6cqw;left:6cqw;z-index:5;display:flex;align-items:center;gap:.8cqw;font-size:1cqw;color:var(--muted)}
+.section-tag b{color:var(--gold);font-weight:600}
+.section-tag::after{content:"";width:3.2cqw;height:1px;background:var(--line);margin-left:.4cqw}
+.section-tag[hidden]{display:none}
+
+.divider .content{max-width:62%}
+.divider-num{position:absolute;right:4cqw;bottom:-4cqw;font-size:34cqw;font-weight:600;line-height:1;color:rgba(255,255,255,.04);pointer-events:none;z-index:1}
+.divider-title{font-size:5.6cqw;line-height:1.05;max-width:none}
+.divider-list{list-style:none;margin:1cqw 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line);max-width:46cqw}
+.divider-list li{display:flex;gap:1.6cqw;align-items:baseline;padding:1cqw 0;border-bottom:1px solid var(--line);font-size:1.3cqw;color:rgba(255,255,255,.85)}
+.divider-list li span{color:var(--gold);font-weight:600;font-size:1.05cqw;min-width:2.6cqw}
+
+.cards.four{grid-template-columns:repeat(4,1fr)}
+.cards.four .card{min-height:15cqw}
 
 /* ---------- Chrome ---------- */
 .rail{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.06);z-index:5}
@@ -237,7 +261,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
   <div class="stage" id="stage">
 
     <!-- 1 . title, full bleed ............................................ -->
-    <section class="slide lay-bleed" data-active="true">
+    <section class="slide lay-bleed" data-chrome="off" data-active="true">
       <div class="media img-hero" role="img" aria-label="Contractor spraying roof coating on a flat roof"></div>
       <div class="content">
         <p class="eyebrow">RoofCoat Leads</p>
@@ -262,11 +286,56 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
+    <!-- agenda ............................................................. -->
+    <section class="slide" data-chrome="off">
+      <div class="content">
+        <p class="eyebrow">Agenda</p>
+        <h2 class="wide">What we will <span>cover.</span></h2>
+        <div class="cards four">
+          <div class="card">
+            <span class="num" aria-hidden="true">01</span>
+            <h3>The problem</h3>
+            <p>Why most contractors overpay for leads that never turn into work.</p>
+          </div>
+          <div class="card">
+            <span class="num" aria-hidden="true">02</span>
+            <h3>Our approach</h3>
+            <p>How we run your campaigns, who they are built for, and what the ads look like.</p>
+          </div>
+          <div class="card">
+            <span class="num" aria-hidden="true">03</span>
+            <h3>Results</h3>
+            <p>What to expect, what one Florida campaign produced, and what a single job covers.</p>
+          </div>
+          <div class="card">
+            <span class="num" aria-hidden="true">04</span>
+            <h3>Working together</h3>
+            <p>What is included, how we work with you every week, and what it costs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- section 01 divider ............................................ -->
+    <section class="slide divider" data-chrome="off">
+      <span class="divider-num" aria-hidden="true">01</span>
+      <div class="content">
+        <p class="eyebrow">Section 01</p>
+        <h2 class="divider-title">The problem</h2>
+        <p class="lead">Why most contractors overpay for leads that never turn into work.</p>
+        <ol class="divider-list">
+            <li><span>01.1</span>A generalist agency learns your trade at your expense</li>
+            <li><span>01.2</span>Three ways contractors currently get work</li>
+            <li><span>01.3</span>Us against a generalist agency</li>
+        </ol>
+      </div>
+    </section>
+
     <!-- 3 . the problem, asymmetric stats ................................ -->
-    <section class="slide lay-strip">
+    <section data-section="01 The problem" class="slide lay-strip">
       <div class="media img-membrane" role="img" aria-label="Roof membrane detail"></div>
       <div class="content">
-        <p class="eyebrow">The problem</p>
+        <p class="eyebrow">The cost of a generalist</p>
         <h2 class="wide">A generalist agency learns your trade <span>at your expense.</span></h2>
         <div class="stat-lead">
           <div class="card">
@@ -289,7 +358,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 4 . three alternatives ........................................... -->
-    <section class="slide">
+    <section data-section="01 The problem" class="slide">
       <div class="content">
         <p class="eyebrow">The alternatives</p>
         <h2 class="wide">Three ways contractors <span>currently get work.</span></h2>
@@ -314,7 +383,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 5 . head to head ............................................... -->
-    <section class="slide">
+    <section data-section="01 The problem" class="slide">
       <div class="content">
         <p class="eyebrow">Side by side</p>
         <h2 class="wide">Us against a <span>generalist agency.</span></h2>
@@ -340,8 +409,24 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
+    <!-- section 02 divider ............................................ -->
+    <section class="slide divider" data-chrome="off">
+      <span class="divider-num" aria-hidden="true">02</span>
+      <div class="content">
+        <p class="eyebrow">Section 02</p>
+        <h2 class="divider-title">Our approach</h2>
+        <p class="lead">How we run your campaigns, who they are built for, and what the ads look like.</p>
+        <ol class="divider-list">
+            <li><span>02.1</span>Why a specialist performs faster</li>
+            <li><span>02.2</span>Who this is for</li>
+            <li><span>02.3</span>Do you work with my competitor?</li>
+            <li><span>02.4</span>The ads we run</li>
+        </ol>
+      </div>
+    </section>
+
     <!-- 6 . why a specialist performs faster ............................. -->
-    <section class="slide lay-strip">
+    <section data-section="02 Our approach" class="slide lay-strip">
       <div class="media img-hero" role="img" aria-label="Roof coating being applied"></div>
       <div class="content">
         <p class="eyebrow">The difference</p>
@@ -360,7 +445,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 7 . who this is for, media left .................................. -->
-    <section class="slide lay-left">
+    <section data-section="02 Our approach" class="slide lay-left">
       <div class="media img-aerial" role="img" aria-label="Aerial view of commercial flat roofs"></div>
       <div class="content">
         <p class="eyebrow">Who this is for</p>
@@ -388,7 +473,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 8 . the competitor question ...................................... -->
-    <section class="slide lay-bleed">
+    <section data-section="02 Our approach" class="slide lay-bleed">
       <div class="media img-aerial" role="img" aria-label="Commercial roofs from above"></div>
       <div class="content">
         <p class="eyebrow">The question everyone asks</p>
@@ -407,11 +492,12 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 9 . the ads (same three video ads as roofcoatleads.com) .......... -->
-    <section class="slide">
+    <section data-section="02 Our approach" class="slide">
       <div class="content">
         <p class="eyebrow">What the ads look like</p>
         <h2 class="wide">Video ads from our <span>roof coating campaigns.</span></h2>
-        <div class="ads">
+        <div class="ads-row">
+          <div class="ads">
           <div class="fbad">
             <div class="fbad-head"><span class="fbad-avatar"></span><div><strong>Your Coating Co.</strong><span>Sponsored</span></div></div>
             <p class="fbad-text">Extend your roof life by 15+ years for a fraction of replacement cost.</p>
@@ -431,12 +517,33 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
             <div class="fbad-link"><div><span>YOURCOATINGCO.COM</span><strong>Coat It Before You Replace It</strong></div><em>Learn More</em></div>
           </div>
         </div>
-        <p class="ads-note"><strong>Run on Facebook, Instagram and YouTube.</strong> Click an ad to play it with sound. These are example ads: the savings and warranty terms are illustrations, and your campaign is written for your company, coating type, territory and warranty.</p>
+          <aside class="ads-aside">
+            <span class="markets-label">We run them on</span>
+            <div class="markets"><span class="hook">Facebook</span><span class="hook">Instagram</span><span class="hook">YouTube</span></div>
+            <p>Click any ad to play it with sound.</p>
+            <p class="ads-note">Example ads. The savings and warranty terms in the copy are illustrations. Your campaign is written for your company, coating type, territory and warranty.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- section 03 divider ............................................ -->
+    <section class="slide divider" data-chrome="off">
+      <span class="divider-num" aria-hidden="true">03</span>
+      <div class="content">
+        <p class="eyebrow">Section 03</p>
+        <h2 class="divider-title">Results</h2>
+        <p class="lead">What to expect, what one Florida campaign produced, and what a single job covers.</p>
+        <ol class="divider-list">
+            <li><span>03.1</span>20 to 50 inquiries a month per market</li>
+            <li><span>03.2</span>Florida track record</li>
+            <li><span>03.3</span>What one job covers</li>
+        </ol>
       </div>
     </section>
 
     <!-- 10 . what to expect .............................................. -->
-    <section class="slide lay-strip">
+    <section data-section="03 Results" class="slide lay-strip">
       <div class="media img-membrane" role="img" aria-label="Roof surface detail"></div>
       <div class="content">
         <p class="eyebrow">What to expect</p>
@@ -462,7 +569,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 11 . results: Florida track record (client lead sheet) ........... -->
-    <section class="slide">
+    <section data-section="03 Results" class="slide">
       <div class="content">
         <p class="eyebrow">Results: Florida</p>
         <h2 class="wide"><span>287 Florida property owners</span> asked for a roof coating quote.</h2>
@@ -494,7 +601,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 12 . the math .................................................... -->
-    <section class="slide lay-strip">
+    <section data-section="03 Results" class="slide lay-strip">
       <div class="media img-membrane" role="img" aria-label="Roof surface detail"></div>
       <div class="content">
         <p class="eyebrow">The math</p>
@@ -520,8 +627,25 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
+    <!-- section 04 divider ............................................ -->
+    <section class="slide divider" data-chrome="off">
+      <span class="divider-num" aria-hidden="true">04</span>
+      <div class="content">
+        <p class="eyebrow">Section 04</p>
+        <h2 class="divider-title">Working together</h2>
+        <p class="lead">What is included, how we work with you every week, and what it costs.</p>
+        <ol class="divider-list">
+            <li><span>04.1</span>What $1,500 a month covers</li>
+            <li><span>04.2</span>Sales and marketing</li>
+            <li><span>04.3</span>How we work together</li>
+            <li><span>04.4</span>Month to month</li>
+            <li><span>04.5</span>Pricing</li>
+        </ol>
+      </div>
+    </section>
+
     <!-- 13 . what is included ............................................ -->
-    <section class="slide">
+    <section data-section="04 Working together" class="slide">
       <div class="content">
         <p class="eyebrow">What is included</p>
         <h2 class="wide">What $1,500 a month <span>covers.</span></h2>
@@ -552,7 +676,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 14 . sales and marketing: the gap every lead gen company has ...... -->
-    <section class="slide">
+    <section data-section="04 Working together" class="slide">
       <div class="content">
         <p class="eyebrow">Sales and marketing</p>
         <h2 class="wide">Every lead gen company has the same problem: <span>marketing can&#8217;t see what sales does.</span></h2>
@@ -577,10 +701,8 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
-    <!-- 15 . how we work together after you sign ......................... -->
-    <!-- Full width, no photo: two lists side by side need the room, and the
-         cramped photo layout wrapped every line. -->
-    <section class="slide">
+    <!-- 15 . how we work together (full width: the lists need the room) ... -->
+    <section data-section="04 Working together" class="slide">
       <div class="content">
         <p class="eyebrow">After you sign</p>
         <h2 class="wide">How we work <span>together.</span></h2>
@@ -608,7 +730,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 15 . month to month, no refunds .................................. -->
-    <section class="slide lay-right">
+    <section data-section="04 Working together" class="slide lay-right">
       <div class="media img-aerial" role="img" aria-label="Commercial roofs from above"></div>
       <div class="content">
         <p class="eyebrow">How we are paid</p>
@@ -623,7 +745,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     </section>
 
     <!-- 16 . price ....................................................... -->
-    <section class="slide lay-bleed">
+    <section data-section="04 Working together" class="slide lay-bleed">
       <div class="media img-hero" role="img" aria-label="Roof coating application"></div>
       <div class="content">
         <p class="eyebrow">Pricing</p>
@@ -640,9 +762,10 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
       </div>
     </section>
 
+    <div class="section-tag" id="section-tag" hidden></div>
     <div class="rail"><span id="rail"></span></div>
     <div class="mark">RoofCoat <b>Leads</b></div>
-    <div class="counter" id="counter">01 / 17</div>
+    <div class="counter" id="counter">01 / 22</div>
   </div>
 </div>
 
@@ -659,6 +782,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
   var rail = document.getElementById("rail");
   var counter = document.getElementById("counter");
   var stage = document.getElementById("stage");
+  var tag = document.getElementById("section-tag");
   var i = 0;
 
   function pad(n) { return n < 10 ? "0" + n : String(n); }
@@ -668,12 +792,13 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
     slides.forEach(function (s, idx) {
       s.setAttribute("data-active", idx === i ? "true" : "false");
     });
-    // Ad videos play only on the slide that is showing.
-    slides.forEach(function (s, idx) {
-      s.querySelectorAll("video").forEach(function (v) {
-        if (idx !== i) { v.pause(); }
-      });
-    });
+    // Changing slide always stops every video and drops focus, so a video
+    // never starts on its own (a focused video otherwise takes space/arrows).
+    document.querySelectorAll("video").forEach(function (v) { v.pause(); });
+    if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
+    var sec = slides[i].getAttribute("data-section");
+    if (sec) { tag.hidden = false; tag.innerHTML = "<b>" + sec.slice(0, 2) + "</b>" + sec.slice(3); }
+    else { tag.hidden = true; }
     rail.style.width = ((i + 1) / slides.length * 100) + "%";
     counter.textContent = pad(i + 1) + " / " + pad(slides.length);
   }
@@ -682,6 +807,7 @@ kbd{font-family:var(--font);border:1px solid var(--line);border-bottom-width:2px
   document.getElementById("prev").addEventListener("click", function () { show(i - 1); });
 
   document.addEventListener("keydown", function (e) {
+    if (e.target && e.target.tagName === "VIDEO") e.target.blur();
     if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") { e.preventDefault(); show(i + 1); }
     else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); show(i - 1); }
     else if (e.key === "Home") { show(0); }
