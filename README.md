@@ -48,8 +48,9 @@ A winter slide for cold markets goes between 20 and 21 once the winter plan is
 agreed with Ezra.
 
 **Slide 12 videos** live in `ads/` next to `index.html` (same three ads as the
-website's ad section, from ImageKit). They play muted on a loop when clicked. The rest of the deck is still self-contained, but to show the ads
-offline you need the `ads/` folder alongside `index.html`.
+website's ad section, from ImageKit). Each plays with sound when clicked, and every
+slide change pauses them. The rest of the deck is self-contained, but to show
+the ads offline you need the `ads/` folder alongside `index.html`.
 
 ## Pre-call brief
 
